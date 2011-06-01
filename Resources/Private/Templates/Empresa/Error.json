@@ -1,1 +1,8 @@
-Json error
+<![CDATA[
+{
+    'success': false,
+]]>
+    'msg': '{msg}'
+<![CDATA[
+}
+]]>

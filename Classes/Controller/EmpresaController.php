@@ -22,12 +22,15 @@ class EmpresaController extends \F3\FLOW3\MVC\Controller\ActionController {
         try {
             parent::mapRequestArgumentsToControllerArguments();
         } catch (\Exception $ex) {
-            $this->forward('error');
+            $this->forward('error',NULL,NULL,array('msg' => $ex->getMessage()));
         }
     }
 
-    public function errorAction() {
-        
+    /**
+     * @param string $msg
+     */
+    public function errorAction($msg='') {
+        $this->view->assign('msg',$msg);
     }
 	/**
 	 * List action for this controller.
