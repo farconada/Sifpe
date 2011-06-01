@@ -25,7 +25,6 @@ class EmpresaController extends AbstractController {
 	 * @return string
 	 */
 	public function indexAction() {
-            $this->view->assign('empresas',$this->empresaRepository->findAll());
 	}
 
     public function listAction() {
@@ -48,7 +47,7 @@ class EmpresaController extends AbstractController {
 
     /**
      * @param \F3\Sifpe\Domain\Model\Empresa $empresa
-     * @return void
+     * @return vexexoid
      */
     public function deleteAction(\F3\Sifpe\Domain\Model\Empresa $empresa) {
             $this->empresaRepository->remove($empresa);
