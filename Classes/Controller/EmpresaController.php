@@ -51,7 +51,7 @@ class EmpresaController extends AbstractController {
      * @return void
      */
     public function deleteAction(\F3\Sifpe\Domain\Model\Empresa $empresa) {
-            $this->view->assign('empresas',$this->empresaRepository->findAll());
+            $this->empresaRepository->remove($empresa);
 	}
 }
  
