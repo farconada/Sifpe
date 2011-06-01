@@ -1,0 +1,22 @@
+{namespace ext=F3\ExtJS\ViewHelpers}
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<f:base />
+        <ext:include/>
+		<title>{blog.title}</title>
+		<link rel="stylesheet" href="{f:uri.resource(path: 'css/Sifpe.css')}" type="text/css" media="all" />
+
+	</head>
+	<body>
+            <h1>SIFPE v4</h1>
+			<div id="mainbox">
+                <f:render section="mainbox" />
+            </div>
+
+	</body>
+</html>

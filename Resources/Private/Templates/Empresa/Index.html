@@ -1,0 +1,29 @@
+﻿﻿
+<f:layout name="Master"/>
+
+<f:section name="mainbox">
+    <f:flashMessages class="flashmessages"/>
+    <h2>Empresas</h2>
+    <ul>
+        <f:for each="{empresas}" as="empresa">
+            <li><f:link.action action="save" arguments="{empresa: empresa}">{empresa.name}</f:link.action></li>
+        </f:for>
+    </ul>
+     <![CDATA[
+    <script type="text/javascript">
+        Ext.onReady(function(){
+            function Empresa(id, name){
+                this.id = id;
+                this.name = name;
+            };
+            Ext.Ajax.request({
+                url:    'index.php/empresa/save',
+                method: 'POST',
+                params: {
+                    'empresa':Ext.util.JSON.encode(new Empresa('7','algo-' + Math.random().toString()))
+                }
+            });
+        });
+    </script>
+    ]]>
+</f:section>
