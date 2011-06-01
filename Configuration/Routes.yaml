@@ -1,0 +1,32 @@
+-
+  name: 'Default'
+  uriPattern:    ''
+  defaults:
+    '@package':    Sifpe
+    '@controller': Empresa
+    '@action':     index
+    '@format':     html
+-
+  name: 'empresa'
+  uriPattern:    'empresa(/)'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Empresa
+    '@action':     index
+    '@format':     html
+-
+  name: 'empresa'
+  uriPattern:    'empresa/index'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Empresa
+    '@action':     index
+    '@format':     html
+-
+  name: 'empresa'
+  uriPattern:    'empresa/{@action}'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Empresa
+    '@action':     list
+    '@format':     json

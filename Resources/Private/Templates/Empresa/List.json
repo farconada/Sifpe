@@ -1,0 +1,7 @@
+<f:layout name="Master"/>
+<f:section name="data">
+        <![CDATA[   {   ]]>
+        'id': '{item.id}',
+        'name': '{item.name}'
+        <![CDATA[   },  ]]>
+</f:section>

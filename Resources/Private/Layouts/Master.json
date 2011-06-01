@@ -1,0 +1,14 @@
+<![CDATA[
+{
+]]>
+        "total":{total},
+<![CDATA[
+        "data":[
+]]>
+            <f:for each="{data}" as="item">
+                <f:render section="data" />
+            </f:for>
+<![CDATA[
+        ]
+}
+]]>
