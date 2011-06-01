@@ -18,6 +18,17 @@ class EmpresaController extends \F3\FLOW3\MVC\Controller\ActionController {
         }
     }
 
+    protected function mapRequestArgumentsToControllerArguments() {
+        try {
+            parent::mapRequestArgumentsToControllerArguments();
+        } catch (\Exception $ex) {
+            $this->forward('error');
+        }
+    }
+
+    public function errorAction() {
+        
+    }
 	/**
 	 * List action for this controller.
 	 *
