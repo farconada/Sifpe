@@ -2,7 +2,7 @@
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Controller;
 
-class EmpresaController extends \F3\FLOW3\MVC\Controller\ActionController {
+class EmpresaController extends AbstractController {
 
     /**
 	 * @inject
@@ -16,22 +16,9 @@ class EmpresaController extends \F3\FLOW3\MVC\Controller\ActionController {
                     ->getPropertyMappingConfiguration()
                     ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter());
         }
+        parent::initializeAction();
     }
 
-    protected function mapRequestArgumentsToControllerArguments() {
-        try {
-            parent::mapRequestArgumentsToControllerArguments();
-        } catch (\Exception $ex) {
-            $this->forward('error',NULL,NULL,array('msg' => $ex->getMessage()));
-        }
-    }
-
-    /**
-     * @param string $msg
-     */
-    public function errorAction($msg='') {
-        $this->view->assign('msg',$msg);
-    }
 	/**
 	 * List action for this controller.
 	 *
