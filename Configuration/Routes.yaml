@@ -24,7 +24,7 @@
     '@format':     html
 -
   name: 'empresa'
-  uriPattern:    'empresa/{@action}'
+  uriPattern:    'empresa/{@action}(/index.{@format})'
   defaults:
     '@package':    Sifpe
     '@controller': Empresa
