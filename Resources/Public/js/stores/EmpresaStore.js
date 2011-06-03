@@ -1,11 +1,23 @@
+Ext.define('Empresa', {
+    extend: 'Ext.data.Model',
+    fields: [{
+        name: 'id',
+        type: 'string'
+    }, {
+        name: 'name',
+        type: 'string'
+    }],
+    validations: [{
+        type: 'length',
+        field: 'name',
+        min: 1
+    }]
+});
 Ext.create('Ext.data.Store', {
     storeId:'empresaStore',
         autoLoad: true,
-        autoSync: false,
-        fields: [
-            {name: 'id', type: 'string'},
-            {name: 'name',  type: 'string'}
-        ],
+        autoSync: true,
+        model: 'Empresa',
         proxy: {
             type: 'ajax',
             url: '/fe/list.json',

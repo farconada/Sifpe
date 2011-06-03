@@ -23,20 +23,16 @@
                         header: 'nombre',
                         dataIndex: 'name',
                         flex: true,
-                        field: {
+                        editor: {
                             type: 'textfield'
                         }
                     }
                 ],
                 listeners: {
                     addclick: function() {
-                        rec = {
-                            'id': '',
-                            'name': ''
-                        };
                         edit = this.editing;
                         edit.cancelEdit();
-                        this.store.insert(0, rec);
+                        this.store.insert(0, new Empresa());
                         edit.startEdit(0,0);
                     }
                 }
