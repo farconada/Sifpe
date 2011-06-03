@@ -1,40 +1,64 @@
 Ext.define('Sifpe.grid.Base', {
     extend: 'Ext.grid.Panel',
-    height: 400,
-    autoWidth: true,
-    style: 'padding: 20px',
-    title: 'Panel Base',
-    selType: 'rowmodel',
-    plugins: [
-        Ext.create('Ext.grid.plugin.RowEditing', {
-            clicksToEdit: 1
-        })
-    ],
-    dockedItems: [
-        {
-            xtype: 'toolbar',
-            items: [
+    alias: 'widget.basegrid',
+
+    initComponent: function() {
+        this.addEvents('addclick','deleteclick');
+        this.editing = Ext.create('Ext.grid.plugin.RowEditing', {
+            clicksToEdit: 2
+        });
+
+        Ext.apply(this, {
+            height: 400,
+            autoWidth: true,
+            style: 'padding: 20px',
+            title: 'Panel Base',
+            selType: 'rowmodel',
+            plugins: [this.editing],
+            dockedItems: [
                 {
-                    text: 'Nuevo',
-                    iconCls: 'icon-add',
-                    handler: function() {
-                        /*// empty record
-                        store.insert(0, new Person());
-                        rowEditing.startEdit(0, 0);*/
-                    }
-                },
-                '-',
-                {
-                    text: 'Borrar',
-                    iconCls: 'icon-delete',
-                    handler: function() {
-                       /* var selection = grid.getView().getSelectionModel().getSelection()[0];
-                        if (selection) {
-                            store.remove(selection);
-                        }*/
-                    }
+                    xtype: 'toolbar',
+                    items: [
+                        {
+                            id: 'btnAdd',
+                            text: 'Nuevo',
+                            iconCls: 'icon-add',
+                            scope: this,
+                            handler: this.onAddClick
+                        },
+                        '-',
+                        {
+                            iconCls: 'icon-delete',
+                            text: 'Borrar',
+                            disabled: true,
+                            itemId: 'delete',
+                            scope: this,
+                            handler: this.onDeleteClick
+                        }
+                    ]
                 }
             ]
+        });
+        this.callParent();
+        this.getSelectionModel().on('selectionchange', this.onSelectChange, this);
+    },
+    onSelectChange: function(selModel, selections) {
+        this.down('#delete').setDisabled(selections.length === 0);
+    },
+    onDeleteClick: function() {
+        this.fireEvent('deleteclick',this);
+        var selection = this.getView().getSelectionModel().getSelection()[0];
+        if (selection) {
+            this.store.remove(selection);
+            this.store.sync();
         }
-    ]
+    },
+    onAddClick: function() {
+         this.fireEvent('addclick',this);
+    },
+    onEdit: function(editor,e){
+        alert('Editado');
+        this.store.sync();
+    }
+
 });

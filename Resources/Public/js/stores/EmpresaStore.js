@@ -1,43 +1,27 @@
 Ext.create('Ext.data.Store', {
     storeId:'empresaStore',
         autoLoad: true,
-        autoSync: true,
-        fields: ['id','name'],
+        autoSync: false,
+        fields: [
+            {name: 'id', type: 'string'},
+            {name: 'name',  type: 'string'}
+        ],
         proxy: {
-            type: 'rest',
-            url: empresaListAsJsonUrl,
+            type: 'ajax',
+            url: '/fe/list.json',
             reader: {
                 type: 'json',
                 root: 'data'
             },
-            writer: {
-                type: 'json'
+            api: {
+                create: '/fe/save',
+                update: '/fe/save',
+                destroy: '/fe/delete'
+            }
+        },
+        listeners:{
+            add: function(store, records, index){
+                alert('store');
             }
         }
     });
-/*
-EmpresaStore = Ext.extend(Ext.data.JsonStore, {
-    constructor: function(cfg) {
-        cfg = cfg || {};
-        EmpresaStore.superclass.constructor.call(this, Ext.apply({
-            storeId: 'EmpresaStore',
-            url: empresaListAsJsonUrl,
-            root: 'data',
-            idProperty: 'id',
-            autoLoad: true,
-            fields: ['id','name']
-        }, cfg));
-    }
-});
-new EmpresaStore();
-
-EmpresaRecord = Ext.data.Record.create([
-    {
-        name: 'empresa_id',
-        type: 'string'
-    },
-    {
-        name: 'name',
-        type: 'string'
-    }
-]);*/

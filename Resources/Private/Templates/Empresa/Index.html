@@ -14,22 +14,38 @@
         Ext.onReady(function() {
             Ext.QuickTips.init();
 
-            var gridPanel = Ext.create('Sifpe.grid.Base',{
+            var gridPanel = Ext.create('Sifpe.grid.Base', {
                 title: 'Gestion de empresas',
                 store: Ext.data.StoreManager.lookup('empresaStore'),
                 renderTo: Ext.get('my-app'),
-                autoExpandColumn: 'name-col',
                 columns: [
                     {
                         header: 'nombre',
                         dataIndex: 'name',
-                        id: 'name-col',
-                        editor: {
-                            xtype: 'textfield'
+                        flex: true,
+                        field: {
+                            type: 'textfield'
                         }
                     }
-                ]
+                ],
+                listeners: {
+                    addclick: function() {
+                        rec = {
+                            'id': '',
+                            'name': ''
+                        };
+                        edit = this.editing;
+                        edit.cancelEdit();
+                        this.store.insert(0, rec);
+                        edit.startEdit(0,0);
+                    }
+                }
             });
+            gridPanel.on('deleteclick', function() {
+                alert('algo paso2')
+            });
+
+
         });
     </script>
     ]]>
