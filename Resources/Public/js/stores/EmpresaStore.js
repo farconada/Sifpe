@@ -16,24 +16,22 @@ Ext.define('Empresa', {
 Ext.create('Ext.data.Store', {
     storeId:'empresaStore',
         autoLoad: true,
+        pageSize: 1,
+        totalProperty: 'total',
         autoSync: true,
         model: 'Empresa',
         proxy: {
             type: 'ajax',
-            url: '/fe/list.json',
+            encode: true,
+            url: baseUrl + 'empresa/list',
             reader: {
                 type: 'json',
                 root: 'data'
             },
             api: {
-                create: '/fe/save',
-                update: '/fe/save',
-                destroy: '/fe/delete'
-            }
-        },
-        listeners:{
-            add: function(store, records, index){
-                alert('store');
+                create: baseUrl + 'empresa/save',
+                update: baseUrl + 'empresa/save',
+                destroy: baseUrl + 'empresa/delete'
             }
         }
     });
