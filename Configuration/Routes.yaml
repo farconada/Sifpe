@@ -6,8 +6,11 @@
     '@controller': Empresa
     '@action':     index
     '@format':     html
+##########################################################
+###  Empresa
+##########################################################
 -
-  name: 'empresa'
+  name: 'empresa default'
   uriPattern:    'empresa(/)'
   defaults:
     '@package':    Sifpe
@@ -15,7 +18,7 @@
     '@action':     index
     '@format':     html
 -
-  name: 'empresa'
+  name: 'empresa index'
   uriPattern:    'empresa/index'
   defaults:
     '@package':    Sifpe
@@ -23,10 +26,64 @@
     '@action':     index
     '@format':     html
 -
-  name: 'empresa'
+  name: 'empresa actions'
   uriPattern:    'empresa/{@action}(/index.{@format})'
   defaults:
     '@package':    Sifpe
     '@controller': Empresa
+    '@action':     list
+    '@format':     json
+##########################################################
+###  Grupo Cuenta
+##########################################################
+-
+  name: 'grupocuenta default'
+  uriPattern:    'grupocuenta(/)'
+  defaults:
+    '@package':    Sifpe
+    '@controller': GrupoCuenta
+    '@action':     index
+    '@format':     html
+-
+  name: 'grupocuenta index'
+  uriPattern:    'grupocuenta/index'
+  defaults:
+    '@package':    Sifpe
+    '@controller': GrupoCuenta
+    '@action':     index
+    '@format':     html
+-
+  name: 'grupocuenta actions'
+  uriPattern:    'grupocuenta/{@action}(/index.{@format})'
+  defaults:
+    '@package':    Sifpe
+    '@controller': GrupoCuenta
+    '@action':     list
+    '@format':     json
+##########################################################
+###  Cuenta
+##########################################################
+-
+  name: 'cuenta default'
+  uriPattern:    'cuenta(/)'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Cuenta
+    '@action':     index
+    '@format':     html
+-
+  name: 'cuenta index'
+  uriPattern:    'cuenta/index'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Cuenta
+    '@action':     index
+    '@format':     html
+-
+  name: 'cuenta actions'
+  uriPattern:    'cuenta/{@action}(/index.{@format})'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Cuenta
     '@action':     list
     '@format':     json
