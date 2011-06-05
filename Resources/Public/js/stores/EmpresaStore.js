@@ -28,6 +28,11 @@ Ext.create('Ext.data.Store', {
                 type: 'json',
                 root: 'data'
             },
+            writer: {
+              type: 'json',
+              encode: true,
+              root: 'empresa'
+            },
             api: {
                 create: baseUrl + 'empresa/save',
                 update: baseUrl + 'empresa/save',

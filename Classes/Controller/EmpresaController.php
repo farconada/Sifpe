@@ -47,10 +47,14 @@ class EmpresaController extends AbstractController {
 
     /**
      * @param \F3\Sifpe\Domain\Model\Empresa $empresa
-     * @return vexexoid
+     * @return void
      */
     public function deleteAction(\F3\Sifpe\Domain\Model\Empresa $empresa) {
-            $this->empresaRepository->remove($empresa);
+            try {
+                $this->empresaRepository->remove($empresa);
+            } catch (\Exception $ex) {
+                $this->forward('error',NULL,NULL,array('msg' => $ex->getMessage()));
+            }
 	}
 }
  

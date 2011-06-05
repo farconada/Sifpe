@@ -55,7 +55,6 @@ Ext.define('Sifpe.grid.Base', {
         var selection = this.getView().getSelectionModel().getSelection()[0];
         if (selection) {
             this.store.remove(selection);
-            this.store.sync();
         }
     },
     onAddClick: function() {
