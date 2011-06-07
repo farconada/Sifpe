@@ -14,6 +14,10 @@ namespace F3\Sifpe\TypeConverters;
  * @scope singleton
  */
 class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTypeConverter {
+    /**
+	 * @var \F3\FLOW3\Reflection\ReflectionService
+	 */
+	protected $reflectionService;
 
     /**
 	 * @var \F3\FLOW3\Persistence\PersistenceManagerInterface
@@ -26,6 +30,14 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
 	 */
 	public function injectPersistenceManager(\F3\FLOW3\Persistence\PersistenceManagerInterface $persistenceManager) {
 		$this->persistenceManager = $persistenceManager;
+	}
+
+    /**
+	 * @param \F3\FLOW3\Reflection\ReflectionService $reflectionService
+	 * @return void
+	 */
+	public function injectReflectionService(\F3\FLOW3\Reflection\ReflectionService $reflectionService) {
+		$this->reflectionService = $reflectionService;
 	}
 
     /**
@@ -63,8 +75,14 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
 
     private function hydrateObjectWhithArray($sourceArray, $targetObject)
     {
+        $classSchema = $this->reflectionService->getClassSchema($targetObject);
         foreach ($sourceArray as $property => $value) {
             if (\F3\FLOW3\Reflection\ObjectAccess::isPropertySettable($targetObject,$property) ) {
+                $propertyMetadata = $classSchema->getProperty($property);
+                if(preg_match('/Domain\\\\Model\\\\/',$propertyMetadata['type'])) {
+                    $relatedEntity = $this->persistenceManager->getObjectByIdentifier($value, $propertyMetadata['type']);
+                    $value = $relatedEntity;
+                }
                 \F3\FLOW3\Reflection\ObjectAccess::setProperty($targetObject,$property,$value);
             }
         }
