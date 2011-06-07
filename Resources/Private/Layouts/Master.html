@@ -1,31 +1,50 @@
 {namespace ext=F3\ExtJS\ViewHelpers}
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<f:base />
-        <!-- BEGIN ExtJs Framework-->
-        <link rel="stylesheet" type="text/css" href="{f:uri.resource(path: 'js/extjs/css/ext-all.css')}" />
-        <script type="text/javascript" src="{f:uri.resource(path: 'js/extjs/ext-all-debug-w-comments.js')}"></script>
-        <!-- END ExtJs Framework-->
-        
-		<title>SIFPE v4</title>
-        <script type="text/javascript">
-            baseUrl = '/index.php/'
-        </script>
-        <f:render section="header" />
-        
-		<link rel="stylesheet" href="{f:uri.resource(path: 'css/Sifpe.css')}" type="text/css" media="all" />
-	</head>
-	<body>
-            <h1>SIFPE v4</h1>
-			<div id="mainbox">
-                <f:render section="mainbox" />
-                <div id="my-app"></div>
-            </div>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <f:base/>
+    <!-- BEGIN ExtJs Framework-->
+    <link rel="stylesheet" type="text/css" href="{f:uri.resource(path: 'js/extjs/css/ext-all.css')}"/>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/extjs/ext-all-debug-w-comments.js')}"></script>
+    <!-- END ExtJs Framework-->
 
-	</body>
+    <title>SIFPE v4</title>
+    <script type="text/javascript">
+        baseUrl = '/index.php/'
+    </script>
+    <f:render section="header"/>
+
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/Sifpe.css')}" type="text/css" media="all"/>
+</head>
+<body>
+<h1>SIFPE v4</h1>
+<nav>
+    <ul class="menu">
+        <li class="first">
+            <f:link.action action="index" controller="Gasto">Gastos</f:link.action>
+        </li>
+        <li>
+            <f:link.action action="index" controller="Ingreso">Ingresos</f:link.action>
+        </li>
+        <li>
+            <f:link.action action="index" controller="Cuenta">Cuentas</f:link.action>
+        </li>
+        <li>
+            <f:link.action action="index" controller="GrupoCuenta">Grupos de cuentas</f:link.action>
+        </li>
+        <li class="last">
+            <f:link.action action="index" controller="Empresa">Empresas</f:link.action>
+        </li>
+    </ul>
+</nav>
+<div id="mainbox">
+    <f:render section="mainbox"/>
+    <div id="my-app"></div>
+</div>
+
+</body>
 </html>

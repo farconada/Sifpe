@@ -1,16 +1,28 @@
 <?php
-declare(ENCODING = 'utf-8');
+declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\Controller;
 
-class GastoController extends AbstractController {
+/*
+* Gasto
+*
+* Gestion de Gastos
+*/
+class GastoController extends ApunteController
+{
+    /**
+     * @inject
+     * @var \F3\Sifpe\Domain\Repository\GastoRepository
+     */
+    protected $apunteRepository;
 
-	/**
-	 * List action for this controller.
-	 *
-	 * @return string
-	 */
-	public function indexAction() {
-		return('algo');
-	}
+    public function initializeAction()
+    {
+        if (isset($this->arguments['gasto'])) {
+            $this->arguments->getArgument('gasto')
+                    ->getPropertyMappingConfiguration()
+                    ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter('F3\Sifpe\Model\Gasto'));
+        }
+        parent::initializeAction();
+    }
+
 }
- 

@@ -14,6 +14,13 @@ namespace F3\Sifpe\TypeConverters;
  * @scope singleton
  */
 class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTypeConverter {
+    private $forcedTargetType;
+
+    public function __construct($targetType='') {
+        if($targetType){
+            $this->forcedTargetType = $targetType;
+        }
+    }
     /**
 	 * @var \F3\FLOW3\Reflection\ReflectionService
 	 */
@@ -60,6 +67,10 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
      */
     public function convertFrom($source, $targetType, array $subProperties = array(), \F3\FLOW3\Property\PropertyMappingConfigurationInterface $configuration = NULL)
     {
+        if ($this->forcedTargetType) {
+            $targetType = $this->forcedTargetType;
+        }
+        
         if(is_string($source)) {
             $source = json_decode($source,true);
         }

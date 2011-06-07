@@ -87,3 +87,57 @@
     '@controller': Cuenta
     '@action':     list
     '@format':     json
+##########################################################
+###  Gasto
+##########################################################
+-
+  name: 'gasto default'
+  uriPattern:    'gasto(/)'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Gasto
+    '@action':     index
+    '@format':     html
+-
+  name: 'gasto index'
+  uriPattern:    'gasto/index'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Gasto
+    '@action':     index
+    '@format':     html
+-
+  name: 'gasto actions'
+  uriPattern:    'gasto/{@action}(/index.{@format})'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Gasto
+    '@action':     list
+    '@format':     json
+##########################################################
+###  Ingreso
+##########################################################
+-
+  name: 'ingreso default'
+  uriPattern:    'ingreso(/)'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Ingreso
+    '@action':     index
+    '@format':     html
+-
+  name: 'ingreso index'
+  uriPattern:    'ingreso/index'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Ingreso
+    '@action':     index
+    '@format':     html
+-
+  name: 'ingreso actions'
+  uriPattern:    'ingreso/{@action}(/index.{@format})'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Ingreso
+    '@action':     list
+    '@format':     json
