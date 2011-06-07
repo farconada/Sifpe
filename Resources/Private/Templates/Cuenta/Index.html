@@ -31,13 +31,13 @@
                     },
                     {
                         header: 'grupo',
-                        dataIndex: 'grupo_cuenta_id',
+                        dataIndex: 'grupo',
                         flex: true,
                         renderer: function(value){
-                            grupoStore = Ext.data.StoreManager.lookup('grupoCuentaStore');
-                            record = grupoStore.getById(value)
-                            if (record) {
-                                return record.data.name;
+                            var grupoStore = Ext.data.StoreManager.lookup('grupoCuentaStore');
+                            var recordGrupo = grupoStore.getById(value);
+                            if (recordGrupo) {
+                                return recordGrupo.data.name;
                             } else {
                                 return value;
                             }

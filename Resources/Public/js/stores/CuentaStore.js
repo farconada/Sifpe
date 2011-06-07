@@ -8,7 +8,7 @@ Ext.define('Cuenta', {
         type: 'string'
     },
             {
-        name: 'grupo_cuenta_id',
+        name: 'grupo',
         type: 'string'
     }
     ],
@@ -16,10 +16,7 @@ Ext.define('Cuenta', {
         type: 'length',
         field: 'name',
         min: 1
-    }],
-    associations: [
-            {type: 'belongsTo', model: 'GrupoCuenta',    foreignKey: 'grupo_cuenta_id', name: 'grupo'}
-        ]
+    }]
 
 });
 Ext.create('Ext.data.Store', {

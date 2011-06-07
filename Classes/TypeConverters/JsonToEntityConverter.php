@@ -64,9 +64,9 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
     private function hydrateObjectWhithArray($sourceArray, $targetObject)
     {
         foreach ($sourceArray as $property => $value) {
-            $property = ucwords('name');
-            $setMethod = 'set' . $property;
-            $targetObject->$setMethod($value);
+            if (\F3\FLOW3\Reflection\ObjectAccess::isPropertySettable($targetObject,$property) ) {
+                \F3\FLOW3\Reflection\ObjectAccess::setProperty($targetObject,$property,$value);
+            }
         }
         return $targetObject;
     }
