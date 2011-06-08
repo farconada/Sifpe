@@ -12,7 +12,7 @@ namespace F3\Sifpe\Domain\Model;
  * @entity
  * @Table(name="ingreso")
  */
-class Ingreso extends Apunte {
+class Ingreso extends Apunte implements \F3\Sifpe\Domain\EntityInterface {
 
  
 }

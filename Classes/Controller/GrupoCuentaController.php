@@ -11,21 +11,13 @@ class GrupoCuentaController extends AbstractController {
 	protected $grupocuentaRepository;
 
     public function initializeAction() {
-        if (isset($this->arguments['grupocuenta'])) {
-            $this->arguments->getArgument('grupocuenta')
+        if (isset($this->arguments['entity'])) {
+            $this->arguments->getArgument('entity')
                     ->getPropertyMappingConfiguration()
-                    ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter());
+                    ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter('\F3\Sifpe\Domain\Model\GrupoCuenta'));
         }
         parent::initializeAction();
     }
-
-	/**
-	 * List action for this controller.
-	 *
-	 * @return string
-	 */
-	public function indexAction() {
-	}
 
     public function listAction() {
             $grupocuentas = $this->grupocuentaRepository->findAll();
@@ -33,28 +25,5 @@ class GrupoCuentaController extends AbstractController {
             $this->view->assign('data',$grupocuentas);
 	}
 
-    /**
-     * @param \F3\Sifpe\Domain\Model\GrupoCuenta $grupocuenta
-     * @return void
-     */
-    public function saveAction(\F3\Sifpe\Domain\Model\GrupoCuenta $grupocuenta) {
-        if($grupocuenta->getId() != '') {
-            $this->grupocuentaRepository->update($grupocuenta);
-        } else {
-            $this->grupocuentaRepository->add($grupocuenta);
-        }
-	}
-
-    /**
-     * @param \F3\Sifpe\Domain\Model\GrupoCuenta $grupocuenta
-     * @return void
-     */
-    public function deleteAction(\F3\Sifpe\Domain\Model\GrupoCuenta $grupocuenta) {
-            try {
-                $this->grupocuentaRepository->remove($grupocuenta);
-            } catch (\Exception $ex) {
-                $this->forward('error',NULL,NULL,array('msg' => $ex->getMessage()));
-            }
-	}
 }
  

@@ -10,7 +10,7 @@ namespace F3\Sifpe\Domain\Model;
  * @Table(name="empresa")
  * @entity
  */
-class Empresa {
+class Empresa implements \F3\Sifpe\Domain\EntityInterface {
     /**
 	 * id
 	 *

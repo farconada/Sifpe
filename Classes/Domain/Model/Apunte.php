@@ -11,7 +11,7 @@ namespace F3\Sifpe\Domain\Model;
 * @MappedSuperclass
 * @entity
 */
-class Apunte {
+class Apunte implements \F3\Sifpe\Domain\EntityInterface {
  
     /**
      * @identity

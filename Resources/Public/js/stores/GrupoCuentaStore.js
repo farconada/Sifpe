@@ -31,7 +31,7 @@ Ext.create('Ext.data.Store', {
             writer: {
               type: 'json',
               encode: true,
-              root: 'grupocuenta'
+              root: 'entity'
             },
             api: {
                 create: baseUrl + 'grupocuenta/save',
