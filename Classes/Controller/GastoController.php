@@ -17,8 +17,8 @@ class GastoController extends ApunteController
 
     public function initializeAction()
     {
-        if (isset($this->arguments['gasto'])) {
-            $this->arguments->getArgument('gasto')
+        if (isset($this->arguments['entity'])) {
+            $this->arguments->getArgument('entity')
                     ->getPropertyMappingConfiguration()
                     ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter('F3\Sifpe\Model\Gasto'));
         }

@@ -11,8 +11,8 @@ class EmpresaController extends AbstractController {
 	protected $empresaRepository;
 
     public function initializeAction() {
-        if (isset($this->arguments['empresa'])) {
-            $this->arguments->getArgument('empresa')
+        if (isset($this->arguments['entity'])) {
+            $this->arguments->getArgument('entity')
                     ->getPropertyMappingConfiguration()
                     ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter('\F3\Sifpe\Domain\Model\Empresa'));
         }

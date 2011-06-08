@@ -11,8 +11,8 @@ class CuentaController extends AbstractController {
 	protected $cuentaRepository;
 
     public function initializeAction() {
-        if (isset($this->arguments['cuenta'])) {
-            $this->arguments->getArgument('cuenta')
+        if (isset($this->arguments['entity'])) {
+            $this->arguments->getArgument('entity')
                     ->getPropertyMappingConfiguration()
                     ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter('\F3\Sifpe\Domain\Model\Cuenta'));
         }
