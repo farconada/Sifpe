@@ -9,7 +9,7 @@
     <h2>Gastos</h2>
     <ul>
     <f:for each="{apuntes}" as="item">
-        <li>{item.id}</li>
+        <li>{item.id} <f:translate key="mes{item.fecha -> f:format.date(format:'n')}" /></li>
     </f:for>
         </ul>
 </f:section>
