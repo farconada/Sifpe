@@ -9,7 +9,8 @@ class JsonOutputTest extends \F3\FLOW3\Tests\FunctionalTestCase {
      */
     public function cuentasList() {
         $output = $this->sendWebRequest('Cuenta','Sifpe','list',array(),'json');
-        var_dump($output);
+        $decoded = json_decode($output,TRUE);
+        $this->assertTrue($decoded);
     }
 
     /**
