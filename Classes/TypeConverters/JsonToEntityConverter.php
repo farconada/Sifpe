@@ -2,20 +2,27 @@
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\TypeConverters;
 /**
- * @author Fernando Arconada fernando.arconada@gmail.com
- * Date: 31/05/11
- * Time: 8:49
- */
- 
-/**
- *
+ * Esta clase se encarga de transformar parametros pasados como JSON a objetos de tipo Domain\Model\XXX
+ * si en el constructor se especifica un string con el nombre de la clase (cualificado con el namespace) al que se
+ * intentara forzar esa transfomacion a ese tipo de objeto, si no se especifica se empleara el objeto especificado en el
+ * signature del metodo de Action para el que se esa este TypeConverter
+ * 
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
  * @scope singleton
+ * @author Fernando Arconada
  */
 class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTypeConverter {
+    /**
+     * @var string Clase a la que intentar forzar la transformacion
+     */
     private $forcedTargetType;
 
+    /**
+     * Constructor
+     *
+     * @param string $targetType nombre de la clase (cualificado con el namespace) al que se intentara forzar la tranformacion
+     */
     public function __construct($targetType='') {
         if($targetType){
             $this->forcedTargetType = $targetType;
@@ -84,6 +91,16 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
         return $entity;
     }
 
+    /**
+     * Devuelve un objeto $targetObject rellenado usando los elementos del array especificado como $source
+     * Para rellenar los objeto se utilizan los setter del objeto
+     * Se el objeto de destino tiene un setter que es otro objeto Domain\Model relacionado entonces hay que buscar primero
+     * el objeto relacionado a partir del Id pasado en las propiedades del array asociativo
+     *
+     * @param  array $sourceArray array asociativo con las propiedades que se usaran para rellar el objeto destino
+     * @param  object $targetObject objeto que sive de base para rellenar el objeto resultado
+     * @return object
+     */
     private function hydrateObjectWhithArray($sourceArray, $targetObject)
     {
         $classSchema = $this->reflectionService->getClassSchema($targetObject);

@@ -4,7 +4,9 @@ namespace F3\Sifpe\Domain\Model;
 /**
  * Apunte
  *
- * un apunte gasto o ingreso
+ * Un apunte gasto o ingreso
+ * Los gastos y los ingresos son iguales, apuntes, que se gestionan en dos tablas separadas, no es necesario repetir el
+ * mapeo para Doctrine por separado si no que se hace en la clase apunte y luego la heredaran los Gastos e Ingresos
  */
  
 /**
