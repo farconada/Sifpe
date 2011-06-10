@@ -8,7 +8,7 @@ class EmpresaController extends AbstractController {
 	 * @inject
 	 * @var \F3\Sifpe\Domain\Repository\EmpresaRepository
 	 */
-	protected $empresaRepository;
+	protected $entityRepository;
 
     public function initializeAction() {
         if (isset($this->arguments['entity'])) {
@@ -19,13 +19,6 @@ class EmpresaController extends AbstractController {
         parent::initializeAction();
     }
 
-
-    public function listAction() {
-            $items = $this->empresaRepository->findAll();
-            $output['total'] = $items->count();
-            $output['data'] = $items;
-            $this->view->assign('value',$output);
-	}
 
 }
  

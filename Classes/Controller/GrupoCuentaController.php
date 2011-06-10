@@ -8,7 +8,7 @@ class GrupoCuentaController extends AbstractController {
 	 * @inject
 	 * @var \F3\Sifpe\Domain\Repository\GrupoCuentaRepository
 	 */
-	protected $grupocuentaRepository;
+	protected $entityRepository;
 
     public function initializeAction() {
         if (isset($this->arguments['entity'])) {
@@ -18,13 +18,6 @@ class GrupoCuentaController extends AbstractController {
         }
         parent::initializeAction();
     }
-
-    public function listAction() {
-            $items = $this->grupocuentaRepository->findAll();
-            $output['total'] = $items->count();
-            $output['data'] = $items;
-            $this->view->assign('value',$output);
-	}
 
 }
  

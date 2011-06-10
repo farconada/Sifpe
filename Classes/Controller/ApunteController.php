@@ -12,7 +12,7 @@ class ApunteController extends AbstractController
     /**
      * @var \F3\FLOW3\Persistence\Repository
      */
-    protected $apunteRepository;
+    protected $entityRepository;
 
     /**
      * indexAction
@@ -20,7 +20,7 @@ class ApunteController extends AbstractController
      */
     public function indexAction()
     {
-        $apuntes = $this->apunteRepository->findAll();
+        $apuntes = $this->entityRepository->findAll();
         $this->view->assign('apuntes',$apuntes);
     }
 

@@ -13,7 +13,7 @@ class GastoController extends ApunteController
      * @inject
      * @var \F3\Sifpe\Domain\Repository\GastoRepository
      */
-    protected $apunteRepository;
+    protected $entityRepository;
 
     public function initializeAction()
     {

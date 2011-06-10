@@ -4,7 +4,10 @@ namespace F3\Sifpe\Controller;
 
 class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 {
-
+    /**
+     * @var \F3\FLOW3\Persistence\Repository
+     */
+    protected $entityRepository;
 
     protected function resolveView()
     {
@@ -15,7 +18,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         } else {
             return parent::resolveView();
         }
-        
+
     }
 
 
@@ -34,9 +37,9 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
     public function errorAction($msg = '')
     {
         $this->view->assign('value', array(
-                                              'success' => FALSE,
-                                              'msg' => $msg
-                                         ));
+                                          'success' => FALSE,
+                                          'msg' => $msg
+                                     ));
     }
 
     /**
@@ -46,7 +49,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
      */
     public function indexAction()
     {
-       
+
     }
 
     /**
@@ -83,5 +86,38 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
                                           'success' => TRUE,
                                           'msg' => 'Guardado'
                                      ));
+    }
+
+    public function listAction()
+    {
+        $items = $this->getItemsToList();
+        $output = $this->getOutputArray($items);
+        $this->view->assign('value', $output);
+    }
+
+    /**
+     * @param \F3\FLOW3\Persistence\Doctrine\Query $query
+     * @return \F3\FLOW3\Persistence\QueryResultInterface
+     */
+    protected function getItemsToList(\F3\FLOW3\Persistence\Doctrine\Query $query = NULL)
+    {
+        if ($query) {
+            return $query->execute();
+        }
+        return $this->entityRepository->findAll();
+    }
+
+    protected function getOutputArray(\F3\FLOW3\Persistence\QueryResultInterface $items)
+    {
+        $output['total'] = $items->count();
+        if (method_exists($items->getFirst(), 'toArray')) {
+            foreach ($items as $oneItem) {
+                $outputArray[] = $oneItem->toArray();
+            }
+            $output['data'] = $outputArray;
+        } else {
+            $output['data'] = $items;
+        }
+        return $output;
     }
 }
