@@ -20,9 +20,10 @@ class GrupoCuentaController extends AbstractController {
     }
 
     public function listAction() {
-            $grupocuentas = $this->grupocuentaRepository->findAll();
-            $this->view->assign('total',$grupocuentas->count());
-            $this->view->assign('data',$grupocuentas);
+            $items = $this->grupocuentaRepository->findAll();
+            $output['total'] = $items->count();
+            $output['data'] = $items;
+            $this->view->assign('value',$output);
 	}
 
 }

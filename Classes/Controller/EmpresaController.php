@@ -21,9 +21,10 @@ class EmpresaController extends AbstractController {
 
 
     public function listAction() {
-            $empresas = $this->empresaRepository->findAll();
-            $this->view->assign('total',$empresas->count());
-            $this->view->assign('data',$empresas);
+            $items = $this->empresaRepository->findAll();
+            $output['total'] = $items->count();
+            $output['data'] = $items;
+            $this->view->assign('value',$output);
 	}
 
 }

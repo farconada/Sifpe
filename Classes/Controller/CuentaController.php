@@ -21,9 +21,17 @@ class CuentaController extends AbstractController {
 
 
     public function listAction() {
-            $cuentas = $this->cuentaRepository->findAll();
-            $this->view->assign('total',$cuentas->count());
-            $this->view->assign('data',$cuentas);
+            $items = $this->cuentaRepository->findAll();
+            $output['total'] = $items->count();
+            if( method_exists($items->getFirst(),'toArray')) {
+                foreach ($items as $oneItem) {
+                    $outputArray[] = $oneItem->toArray();
+                }
+                $output['data'] = $outputArray;
+            } else {
+                $output['data'] = $items;
+            }
+            $this->view->assign('value',$output);
 	}
 
 }

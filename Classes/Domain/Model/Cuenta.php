@@ -85,4 +85,17 @@ class Cuenta implements \F3\Sifpe\Domain\EntityInterface {
         return $this->grupo;
     }
 
+    /**
+     * Devuelve la Cuenta como un array asociativo no jerarquico,
+     * es decir mostrando el grupo ID en vez de otro array
+     * @return array
+     */
+    public function toArray(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'grupo' => $this->getGrupo()->getId()
+        );
+    }
+
 }
