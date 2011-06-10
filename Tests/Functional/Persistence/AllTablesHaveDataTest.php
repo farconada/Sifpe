@@ -42,14 +42,7 @@ class AllTablesHaveDataTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
     public function setUp() {
 		parent::setUp();
-        $configurationManager = $this->objectManager->get('F3\FLOW3\Configuration\ConfigurationManager');
-		$settingsConfiguration = $configurationManager->getConfiguration(\F3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
-        $all_query = file_get_contents('/tmp/sifpe3.sql');
-        $con = mysql_connect($settingsConfiguration['FLOW3']['persistence']['backendOptions']['host'],$settingsConfiguration['FLOW3']['persistence']['backendOptions']['user']);
-        mysql_select_db($settingsConfiguration['FLOW3']['persistence']['backendOptions']['dbname'],$con);
-        mysql_query($all_query,$con);
-        mysql_close($con);
-        
+
 		$this->cuentaRepository = new \F3\Sifpe\Domain\Repository\CuentaRepository();
         $this->empresaRepository = new \F3\Sifpe\Domain\Repository\EmpresaRepository();
         $this->grupocuentaRepository = new \F3\Sifpe\Domain\Repository\GrupoCuentaRepository();
@@ -103,7 +96,12 @@ class AllTablesHaveDataTest extends \F3\FLOW3\Tests\FunctionalTestCase {
     }
 
 
-    public function tearDown() {
+    /**
+     * Para evitar que se borre la BD al terminar
+     * @static
+     * @return void
+     */
+    static public function tearDownAfterClass() {
 
     }
 
