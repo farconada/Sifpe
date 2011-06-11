@@ -9,6 +9,6 @@ namespace F3\Sifpe\Domain\Repository;
  *
  */
   
-class IngresoRepository extends \F3\FLOW3\Persistence\Repository {
+class IngresoRepository extends ApunteRepository {
  
 }

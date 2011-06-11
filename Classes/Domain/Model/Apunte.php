@@ -158,4 +158,20 @@ class Apunte implements \F3\Sifpe\Domain\EntityInterface {
     {
         return $this->notas;
     }
+
+    /**
+     * Devuelve el Apunte como un array asociativo no jerarquico,
+     * es decir mostrando el las relaciones como ID en vez de otro array
+     * @return array
+     */
+    public function toArray(){
+        return array(
+            'id' => $this->getId(),
+            'fecha' => $this->getFecha()->format('Y-m-d') ,
+            'notas' => $this->getNotas(),
+            'empresa' => $this->getEmpresa()->getId(),
+            'cuenta' => $this->getCuenta()->getId(),
+            'cantidad' => $this->getCantidad()
+        );
+    }
 }

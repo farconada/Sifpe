@@ -1,0 +1,15 @@
+﻿﻿
+<f:layout name="Master"/>
+<f:section name="header">
+
+</f:section>
+
+<f:section name="mainbox">
+    <f:flashMessages class="flashmessages"/>
+    <h2>Ingresos</h2>
+    <ul>
+    <f:for each="{apuntes}" as="item">
+        <li>{item.id}</li>
+    </f:for>
+        </ul>
+</f:section>

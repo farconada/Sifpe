@@ -119,24 +119,11 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
      */
     public function listAction()
     {
-        $items = $this->getItemsToList();
+        $items = $this->entityRepository->findAll();
         $output = $this->getOutputArray($items);
         $this->view->assign('value', $output);
     }
 
-    /**
-     * Devuelve una lista de objetos como un QueryResult
-     *
-     * @param \F3\FLOW3\Persistence\Doctrine\Query $query Query que puede filtrar los objetos a devolver
-     * @return \F3\FLOW3\Persistence\QueryResultInterface
-     */
-    protected function getItemsToList(\F3\FLOW3\Persistence\Doctrine\Query $query = NULL)
-    {
-        if ($query) {
-            return $query->execute();
-        }
-        return $this->entityRepository->findAll();
-    }
 
     /**
      * A partir de un objeto de resultado de una query devuelve este resultado en forma de array
