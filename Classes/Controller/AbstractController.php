@@ -20,8 +20,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
     protected $entityRepository;
 
     /**
-     * Devuelve un objeto de tipo vista en funcion del formato de la peticion
-     * para JSON devuelve una vista JsonView
+     * Devuelve un objeto de tipo vista en funcion del formato de la peticion, para JSON devuelve una vista JsonView
      *
      * @return \F3\FLOW3\Object\The|\F3\Fluid\View\ViewInterface|object
      */
@@ -39,8 +38,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 
 
     /**
-     * Overrides esta funcion para ponerla en un Try-Catch para controlar las
-     * excepciones que puedan lanzar los posibles TypeConverters
+     * Overrides, Esta funcion para ponerla en un Try-Catch para controlar las que excepciones que puedan lanzar los posibles TypeConverters
      */
     protected function mapRequestArgumentsToControllerArguments()
     {
@@ -127,7 +125,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
     }
 
     /**
-     * Devuelve una lista de objetos
+     * Devuelve una lista de objetos como un QueryResult
      *
      * @param \F3\FLOW3\Persistence\Doctrine\Query $query Query que puede filtrar los objetos a devolver
      * @return \F3\FLOW3\Persistence\QueryResultInterface
@@ -142,8 +140,9 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 
     /**
      * A partir de un objeto de resultado de una query devuelve este resultado en forma de array
-     * Si el objeto de resultado tiene un metodo 'toArray' se emplea ese metodo, si no se devuelve directamente
-     * ese objeto dentro del array.
+     * Si el objeto de resultado tiene un metodo 'toArray' se emplea ese metodo, si no se devuelve directamente ese objeto dentro del array.
+     * array ( 'total' => 5,
+     *          'data' => array(objeto|array, objeto|array ... )
      * Normalmente este array se emplea dentro de una vista JsonView
      *
      * @param \F3\FLOW3\Persistence\QueryResultInterface $items
