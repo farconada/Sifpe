@@ -14,6 +14,11 @@ class JsonProperty extends \F3\FLOW3\Tests\FunctionalTestCase {
 	 */
 	protected $typeConverter;
 
+    /**
+	 * @var boolean
+	 */
+	static protected $testablePersistenceEnabled = TRUE;
+
 	/**
 	 * @return voiD
 	 */
@@ -34,9 +39,11 @@ class JsonProperty extends \F3\FLOW3\Tests\FunctionalTestCase {
 
     public function empresasJson() {
         $empresasJsonArray = array();
-        $empresasJsonArray[] = json_encode(array(
+        $empresasJsonArray[] = array(json_encode(array(
                                               'id'      => 1,
                                               'name'    => 'Fernando'
-                                           ));
+                                           ))
+        );
+        return $empresasJsonArray;
     }
 }
