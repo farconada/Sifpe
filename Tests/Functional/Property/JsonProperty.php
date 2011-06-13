@@ -1,13 +1,12 @@
 <?php
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Tests\Functional\Property;
-use F3\sifpe\Domain\Model\Empresa;
 /**
  * Testcase for Property Mapper
  * @author Fernando Arconada fernando.arconada@gmail.com
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class JsonProperty extends \F3\FLOW3\Tests\FunctionalTestCase {
+class JsonProperty extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase {
     /**
 	 *
 	 * @var \F3\Sifpe\TypeConverters\JsonToEntityConverter
@@ -20,7 +19,7 @@ class JsonProperty extends \F3\FLOW3\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = TRUE;
 
 	/**
-	 * @return voiD
+	 * @return void
 	 */
 	public function setUp() {
 		parent::setUp();

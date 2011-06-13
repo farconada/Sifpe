@@ -2,7 +2,7 @@
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Tests\Functional\Persistence;
 
-class AllTablesHaveDataTest extends \F3\FLOW3\Tests\FunctionalTestCase {
+class AllTablesHaveDataTest extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase {
 
     /**
 	 * @var boolean
@@ -55,7 +55,6 @@ class AllTablesHaveDataTest extends \F3\FLOW3\Tests\FunctionalTestCase {
      */
     public function cuentaHasData() {
         $items = $this->cuentaRepository->findAll();
-        var_dump($items->count());
         $this->assertGreaterThan(0,$items->count());
     }
 
@@ -95,14 +94,5 @@ class AllTablesHaveDataTest extends \F3\FLOW3\Tests\FunctionalTestCase {
         $this->assertGreaterThan(0,$items->count());
     }
 
-
-    /**
-     * Para evitar que se borre la BD al terminar
-     * @static
-     * @return void
-     */
-    static public function tearDownAfterClass() {
-
-    }
 
 }

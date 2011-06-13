@@ -2,23 +2,24 @@
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Tests\Functional\Output;
 
-class JsonOutputTest extends \F3\FLOW3\Tests\FunctionalTestCase {
+class JsonOutputTest extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase {
+    private $controllers = array('Cuenta', 'GrupoCuenta', 'Empresa');
+
     /**
      * @test
      * @return void
      */
-    public function cuentasList() {
-        $output = $this->sendWebRequest('Cuenta','Sifpe','list',array(),'json');
-        $decoded = json_decode($output,TRUE);
-        $this->assertTrue($decoded);
-    }
-
-    /**
-     * Para evitar que se borre la BD al terminar
-     * @static
-     * @return void
-     */
-    static public function tearDownAfterClass() {
+    public function listValidJson() {
+        foreach($this->controllers as $controller) {
+            $output = $this->sendWebRequest($controller,'Sifpe','list',array(),'json');
+            $decoded = json_decode($output,TRUE);
+            $this->assertTrue(is_array($decoded));
+        }
 
     }
+
+    public function successMsg(){
+
+    }
+
 }
