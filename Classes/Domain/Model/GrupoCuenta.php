@@ -31,6 +31,12 @@ class GrupoCuenta implements \F3\Sifpe\Domain\EntityInterface {
 	protected $name = '';
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Sifpe\Domain\Model\Cuenta>
+     * @OneToMany(mappedBy="grupo", cascade={"all"})
+     */
+    protected $cuentas;
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -60,6 +66,15 @@ class GrupoCuenta implements \F3\Sifpe\Domain\EntityInterface {
     public function getName()
     {
         return $this->name;
+    }
+
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getCuentas()
+    {
+        return $this->cuentas;
     }
 
 }

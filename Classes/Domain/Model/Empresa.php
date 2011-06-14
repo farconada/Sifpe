@@ -31,6 +31,18 @@ class Empresa implements \F3\Sifpe\Domain\EntityInterface {
 	protected $name = '';
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Sifpe\Domain\Model\Gasto>
+     * @OneToMany(mappedBy="empresa", cascade={"all"})
+     */
+    protected $gastos;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Sifpe\Domain\Model\Ingreso>
+     * @OneToMany(mappedBy="empresa", cascade={"all"})
+     */
+    protected $ingresos;
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -60,6 +72,18 @@ class Empresa implements \F3\Sifpe\Domain\EntityInterface {
     public function getName()
     {
         return $this->name;
+    }
+
+
+    public function getGastos()
+    {
+        return $this->gastos;
+    }
+
+
+    public function getIngresos()
+    {
+        return $this->ingresos;
     }
 
 }

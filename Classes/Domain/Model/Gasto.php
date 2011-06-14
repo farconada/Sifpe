@@ -13,5 +13,17 @@ namespace F3\Sifpe\Domain\Model;
  * @Table(name="gasto")
  */
 class Gasto extends Apunte implements \F3\Sifpe\Domain\EntityInterface {
- 
+    /**
+	 * @var \F3\Sifpe\Domain\Model\Empresa
+	 * @ManyToOne(inversedBy="gastos")
+     * @JoinColumn(name="empresa_id", referencedColumnName="id")
+	 */
+    protected $empresa;
+
+    /**
+	 * @var \F3\Sifpe\Domain\Model\Cuenta
+	 * @ManyToOne(inversedBy="gastos")
+     * @JoinColumn(name="cuenta_id", referencedColumnName="id")
+	 */
+    protected $cuenta;
 }

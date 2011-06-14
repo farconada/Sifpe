@@ -32,10 +32,22 @@ class Cuenta implements \F3\Sifpe\Domain\EntityInterface {
 
     /**
 	 * @var \F3\Sifpe\Domain\Model\GrupoCuenta
-	 * @ManyToOne
+	 * @ManyToOne(inversedBy="cuentas")
      * @JoinColumn(name="grupo_cuenta_id", referencedColumnName="id")
 	 */
 	protected $grupo;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Sifpe\Domain\Model\Gasto>
+     * @OneToMany(mappedBy="cuenta", cascade={"all"})
+     */
+    protected $gastos;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Sifpe\Domain\Model\Ingreso>
+     * @OneToMany(mappedBy="cuenta", cascade={"all"})
+     */
+    protected $ingresos;
 
     /**
      * @param int $id
@@ -85,6 +97,17 @@ class Cuenta implements \F3\Sifpe\Domain\EntityInterface {
         return $this->grupo;
     }
 
+    public function getGastos()
+    {
+        return $this->gastos;
+    }
+
+
+    public function getIngresos()
+    {
+        return $this->ingresos;
+    }
+    
     /**
      * Devuelve la Cuenta como un array asociativo no jerarquico,
      * es decir mostrando el grupo ID en vez de otro array

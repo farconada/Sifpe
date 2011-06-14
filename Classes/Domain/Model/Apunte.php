@@ -42,20 +42,6 @@ class Apunte implements \F3\Sifpe\Domain\EntityInterface {
     protected $notas;
 
     /**
-	 * @var \F3\Sifpe\Domain\Model\Empresa
-	 * @ManyToOne
-     * @JoinColumn(name="empresa_id", referencedColumnName="id")
-	 */
-    protected $empresa;
-
-    /**
-	 * @var \F3\Sifpe\Domain\Model\Cuenta
-	 * @ManyToOne
-     * @JoinColumn(name="cuenta_id", referencedColumnName="id")
-	 */
-    protected $cuenta;
-
-    /**
      * @var float
      * @validate decimal
      * @Column(type="decimal")
