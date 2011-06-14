@@ -8,6 +8,11 @@ namespace F3\Sifpe\Tests\Functional;
  */
 class AbstractFunctionalTestCase extends \F3\FLOW3\Tests\FunctionalTestCase
 {
+    /**
+     * @var boolean
+     */
+    static protected $testablePersistenceEnabled = TRUE;
+    
     public function setUp()
     {
         parent::setUp();
@@ -36,5 +41,20 @@ class AbstractFunctionalTestCase extends \F3\FLOW3\Tests\FunctionalTestCase
     {
     }
 
+    public function listEmpresasJson()
+    {
+        $empresasJsonArray = array();
+        $empresaRespository = new \F3\Sifpe\Domain\Repository\EmpresaRepository();
+        $empresas = $empresaRespository->findAll();
+        foreach ($empresas as $empresa) {
+            $empresasJsonArray[] = array(json_encode(array(
+                                                          'id' => $empresa->getId(),
+                                                          'name' => $empresa->getName()
+                                                     ))
+            );
+        }
+
+        return $empresasJsonArray;
+    }
 
 }

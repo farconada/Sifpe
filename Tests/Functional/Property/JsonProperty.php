@@ -21,11 +21,6 @@ class JsonProperty extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase
     protected $empresaRepository;
 
     /**
-     * @var boolean
-     */
-    static protected $testablePersistenceEnabled = TRUE;
-
-    /**
      * @return void
      */
     public function setUp()
@@ -37,42 +32,13 @@ class JsonProperty extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase
 
     /**
      * @test
-     * @dataProvider empresasJson
+     * @dataProvider listEmpresasJson
      * @return void
      */
     public function convertToEmpresa($jsonParam)
     {
         $convertedObject = $this->typeConverter->convertFrom($jsonParam, '\F3\Sifpe\Domain\Model\Empresa');
-        $this->assertTrue(is_object($convertedObject));
+        $this->assertEquals('F3\Sifpe\Domain\Model\Empresa',get_class($convertedObject));
     }
 
-    /**
-     * @test
-     * @dataProvider empresasJson
-     * @param  $jsonParam
-     * @return void
-     */
-    public function deleteAllEmpresas($jsonParam) {
-        $convertedObject = $this->typeConverter->convertFrom($jsonParam, '\F3\Sifpe\Domain\Model\Empresa');
-        $empresasAntes = $this->empresaRepository->findAll()->count();
-        $output = $this->sendWebRequest('Empresa','Sifpe','delete',array('entity' =>$convertedObject),'json');
-        $empresasDespues = $this->empresaRepository->findAll()->count();
-        $this->assertEquals($empresasAntes-1,$empresasDespues);
-    }
-
-    public function empresasJson()
-    {
-        $empresasJsonArray = array();
-        $empresaRespository = new \F3\Sifpe\Domain\Repository\EmpresaRepository();
-        $empresas = $empresaRespository->findAll();
-        foreach ($empresas as $empresa) {
-            $empresasJsonArray[] = array(json_encode(array(
-                                                          'id' => $empresa->getId(),
-                                                          'name' => $empresa->getName()
-                                                     ))
-            );
-        }
-
-        return $empresasJsonArray;
-    }
 }
