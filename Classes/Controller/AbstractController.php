@@ -83,6 +83,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
     {
         try {
             $this->persistenceManager->remove($entity);
+            $this->persistenceManager->persistAll();
             $this->view->assign('value', array(
                                               'success' => TRUE,
                                               'msg' => 'Borrado'
@@ -107,6 +108,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         } else {
             $this->persistenceManager->add($entity);
         }
+        $this->persistenceManager->persistAll();
         $this->view->assign('value', array(
                                           'success' => TRUE,
                                           'msg' => 'Guardado'
