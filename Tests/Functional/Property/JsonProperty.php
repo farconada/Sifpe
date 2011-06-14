@@ -30,6 +30,12 @@ class JsonProperty extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase
         $this->typeConverter = $this->objectManager->get('\F3\Sifpe\TypeConverters\JsonToEntityConverter');
     }
 
+    private function convertToEntity($type,$jsonParam) {
+        $convertedObject = $this->typeConverter->convertFrom($jsonParam, '\F3\Sifpe\Domain\Model\\'.$type);
+        $this->assertEquals('F3\Sifpe\Domain\Model\\'.$type, get_class($convertedObject));
+        $this->assertFalse($this->persistenceManager->isNewObject($convertedObject));
+    }
+
     /**
      * @test
      * @dataProvider listEmpresasJson
@@ -37,8 +43,17 @@ class JsonProperty extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase
      */
     public function convertToEmpresa($jsonParam)
     {
-        $convertedObject = $this->typeConverter->convertFrom($jsonParam, '\F3\Sifpe\Domain\Model\Empresa');
-        $this->assertEquals('F3\Sifpe\Domain\Model\Empresa',get_class($convertedObject));
+        $this->convertToEntity('Empresa',$jsonParam);
+    }
+
+    /**
+     * @test
+     * @dataProvider listGruposDeCuentasJson
+     * @return void
+     */
+    public function convertToGrupoCuenta($jsonParam)
+    {
+         $this->convertToEntity('GrupoCuenta',$jsonParam);
     }
 
 }

@@ -57,4 +57,20 @@ class AbstractFunctionalTestCase extends \F3\FLOW3\Tests\FunctionalTestCase
         return $empresasJsonArray;
     }
 
+     public function listGruposDeCuentasJson()
+    {
+        $resultJsonArray = array();
+        $respository = new \F3\Sifpe\Domain\Repository\GrupoCuentaRepository();
+        $items = $respository->findAll();
+        foreach ($items as $item) {
+            $resultJsonArray[] = array(json_encode(array(
+                                                          'id' => $item->getId(),
+                                                          'name' => $item->getName()
+                                                     ))
+            );
+        }
+
+        return $resultJsonArray;
+    }
+
 }

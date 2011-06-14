@@ -32,6 +32,7 @@ class PersistEntities extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestC
     {
         parent::setUp();
         $this->empresaRepository = new \F3\Sifpe\Domain\Repository\EmpresaRepository();
+        $this->grupocuentaRepository = new \F3\Sifpe\Domain\Repository\GrupoCuentaRepository();
         $this->typeConverter = $this->objectManager->get('\F3\Sifpe\TypeConverters\JsonToEntityConverter');
     }
 
@@ -46,10 +47,20 @@ class PersistEntities extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestC
         $this->deleteEntityFromJson($this->empresaRepository,'Empresa',$jsonParam);
     }
 
+    /**
+     * @test
+     * @dataProvider listGruposDeCuentasJson
+     * @param  $jsonParam
+     * @return void
+     */
+    public function deleteGruposDeCuentas($jsonParam) {
+        $this->deleteEntityFromJson($this->grupocuentaRepository,'GrupoCuenta',$jsonParam);
+    }
+
     private function deleteEntityFromJson($repository,$type,$jsonParam) {
         $convertedObject = $this->typeConverter->convertFrom($jsonParam, '\F3\Sifpe\Domain\Model\\' . $type);
         $elementosAntes = $repository->findAll()->count();
-        $this->sendWebRequest($type,'Sifpe','delete',array('entity' =>$convertedObject),'json');
+        $output = $this->sendWebRequest($type,'Sifpe','delete',array('entity' =>$convertedObject),'json');
         $elementosDespues = $repository->findAll()->count();
         $this->assertEquals($elementosAntes-1,$elementosDespues);
     }
