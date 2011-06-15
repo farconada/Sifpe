@@ -1,15 +1,72 @@
-﻿﻿
-<f:layout name="Master"/>
+﻿<f:layout name="Master"/>
 <f:section name="header">
-
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ApunteModel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/GastoStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
 </f:section>
 
 <f:section name="mainbox">
     <f:flashMessages class="flashmessages"/>
     <h2>Gastos</h2>
-    <ul>
-    <f:for each="{apuntes}" as="item">
-        <li>{item.id} <f:translate key="mes{item.fecha -> f:format.date(format:'n')}" /></li>
-    </f:for>
-        </ul>
+    <![CDATA[
+    <script type="text/javascript">
+        Ext.onReady(function() {
+            Ext.QuickTips.init();
+
+            var gridPanel = Ext.create('Sifpe.grid.Base', {
+                title: 'Gestion de gastos',
+                store: Ext.data.StoreManager.lookup('gastoStore'),
+                renderTo: Ext.get('my-app'),
+                columns: [
+                    {
+                        header: 'fecha',
+                        dataIndex: 'fecha',
+                        xtype: 'datecolumn',
+                        format: 'd-m-Y',
+                        editor: {
+                            type: 'datefield'
+                        }
+                    },
+                    {
+                        header: 'empresa',
+                        dataIndex: 'empresa',
+                        editor: {
+                            type: 'textfield'
+                        }
+                    },
+                    {
+                        header: 'cuenta',
+                        dataIndex: 'cuenta',
+                        editor: {
+                            type: 'textfield'
+                        }
+                    },
+                    {
+                        header: 'cantidad',
+                        dataIndex: 'cantidad',
+                        editor: {
+                            type: 'numberfield'
+                        }
+                    },
+                    {
+                        header: 'notas',
+                        dataIndex: 'notas',
+                        flex: true,
+                        editor: {
+                            type: 'textfield'
+                        }
+                    }
+                ],
+                listeners: {
+                    addclick: function() {
+                        edit = this.editing;
+                        edit.cancelEdit();
+                        this.store.insert(0, new Apunte());
+                        edit.startEdit(0, 0);
+                    }
+                }
+            });
+        });
+    </script>
+    ]]>
 </f:section>
