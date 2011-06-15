@@ -23,8 +23,13 @@
                         dataIndex: 'fecha',
                         xtype: 'datecolumn',
                         format: 'd-m-Y',
-                        editor: {
-                            type: 'datefield'
+                        field: {
+                            xtype: 'datefield',
+                            allowBlank: false,
+                            format: 'd-m-Y',
+                            minValue: '01/01/2006',
+                            minText: 'Cannot have a start date before the company existed!',
+                            maxValue: Ext.Date.format(new Date(), 'm/d/Y')
                         }
                     },
                     {
@@ -44,8 +49,10 @@
                     {
                         header: 'cantidad',
                         dataIndex: 'cantidad',
+                        type: 'numbercolumn',
                         editor: {
-                            type: 'numberfield'
+                            xtype: 'textfield',
+                            allowBlank: false
                         }
                     },
                     {
