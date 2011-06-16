@@ -44,7 +44,7 @@ class Apunte implements \F3\Sifpe\Domain\EntityInterface {
     /**
      * @var float
      * @validate decimal
-     * @Column(type="decimal")
+     * @Column(type="decimal", precision=10, scale=2)
      */
     protected $cantidad;
 
