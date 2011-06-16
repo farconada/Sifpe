@@ -1,7 +1,9 @@
 ﻿<f:layout name="Master"/>
 <f:section name="header">
-    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ApunteModel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ApunteModel.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/GastoStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/CuentaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/EmpresaStore.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
 </f:section>
 
@@ -35,20 +37,35 @@
                     {
                         header: 'empresa',
                         dataIndex: 'empresa',
+                        flex: true,
+                        renderer: getEmpresaFromId,
                         editor: {
-                            type: 'textfield'
+                            xtype: 'combo',
+                            editable: false,
+                            store:  Ext.data.StoreManager.lookup('empresaStore'),
+                            queryMode: 'local',
+                            displayField: 'name',
+                            valueField: 'id'
                         }
                     },
                     {
-                        header: 'cuenta',
+                       header: 'cuenta',
                         dataIndex: 'cuenta',
+                        flex: true,
+                        renderer: getCuentaFromId,
                         editor: {
-                            type: 'textfield'
+                            xtype: 'combo',
+                            editable: false,
+                            store:  Ext.data.StoreManager.lookup('cuentaStore'),
+                            queryMode: 'local',
+                            displayField: 'name',
+                            valueField: 'id'
                         }
                     },
                     {
                         header: 'cantidad',
                         dataIndex: 'cantidad',
+                        align: 'right',
                         type: 'numbercolumn',
                         editor: {
                             xtype: 'textfield',
@@ -74,6 +91,10 @@
                 }
             });
         });
+        cuentaStore = Ext.data.StoreManager.lookup('cuentaStore');
+        cuentaStore.on('load',function(){gridPanel.getView().refresh()});
+        empresaStore = Ext.data.StoreManager.lookup('empresaStore');
+        empresaStore.on('load',function(){gridPanel.getView().refresh()});
     </script>
     ]]>
 </f:section>
