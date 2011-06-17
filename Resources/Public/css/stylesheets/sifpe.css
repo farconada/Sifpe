@@ -1,0 +1,69 @@
+/* line 5, ../sass/sifpe.scss */
+body {
+  background-color: #e5e5e5;
+}
+
+/* line 8, ../sass/sifpe.scss */
+header h1 {
+  text-align: center;
+  font-family: 'Nova Script', serif;
+  text-shadow: white 2px 3px 1px;
+  padding: 5px;
+}
+
+/* line 14, ../sass/sifpe.scss */
+nav {
+  width: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(50%, #e5e5e5), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(#ffffff, #e5e5e5, #ffffff);
+  background-image: -moz-linear-gradient(#ffffff, #e5e5e5, #ffffff);
+  background-image: -o-linear-gradient(#ffffff, #e5e5e5, #ffffff);
+  background-image: -ms-linear-gradient(#ffffff, #e5e5e5, #ffffff);
+  background-image: linear-gradient(#ffffff, #e5e5e5, #ffffff);
+}
+/* line 17, ../sass/sifpe.scss */
+nav ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 20, ../sass/sifpe.scss */
+nav li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+  white-space: nowrap;
+  display: inline;
+  float: left;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+/* line 48, ../../../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/lists/_horizontal-list.scss */
+nav li:first-child, nav li.first {
+  padding-left: 0;
+}
+/* line 49, ../../../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/lists/_horizontal-list.scss */
+nav li:last-child {
+  padding-right: 0;
+}
+/* line 50, ../../../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/lists/_horizontal-list.scss */
+nav li.last {
+  padding-right: 0;
+}
+/* line 23, ../sass/sifpe.scss */
+nav li a {
+  padding: 5px 10px;
+  text-decoration: none;
+}
+/* line 27, ../sass/sifpe.scss */
+nav li a:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(50%, #d9e5f3), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(#ffffff, #d9e5f3, #ffffff);
+  background-image: -moz-linear-gradient(#ffffff, #d9e5f3, #ffffff);
+  background-image: -o-linear-gradient(#ffffff, #d9e5f3, #ffffff);
+  background-image: -ms-linear-gradient(#ffffff, #d9e5f3, #ffffff);
+  background-image: linear-gradient(#ffffff, #d9e5f3, #ffffff);
+  border: 1px solid #fff;
+}

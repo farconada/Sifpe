@@ -11,7 +11,7 @@ Ext.define('Sifpe.grid.Base', {
         Ext.apply(this, {
             height: 400,
             autoWidth: true,
-            style: 'padding: 20px',
+            style: 'padding: 5px',
             selType: 'rowmodel',
             plugins: [this.editing],
             dockedItems: [
