@@ -14,10 +14,22 @@
         Ext.onReady(function() {
             Ext.QuickTips.init();
 
+            var groupingFeature = Ext.create('Ext.grid.feature.GroupingSummary', {
+                id: 'group',
+                groupHeaderTpl: '({rows.length} Apunte{[values.rows.length > 1 ? "s" : ""]})'
+            });
             var gridPanel = Ext.create('Sifpe.grid.Base', {
                 title: 'Gestion de gastos',
                 store: Ext.data.StoreManager.lookup('gastoStore'),
                 renderTo: Ext.get('my-app'),
+                features: [groupingFeature],
+                fbar  : ['->', {
+                    text:'Desagrupar',
+                    iconCls: 'icon-clear-group',
+                    handler : function() {
+                        groupingFeature.disable();
+                    }
+                }],
                 columns: [
                     {
                         header: 'fecha',
@@ -48,7 +60,7 @@
                         }
                     },
                     {
-                       header: 'cuenta',
+                        header: 'cuenta',
                         dataIndex: 'cuenta',
                         flex: true,
                         renderer: getCuentaFromId,
@@ -66,6 +78,10 @@
                         dataIndex: 'cantidad',
                         align: 'right',
                         type: 'numbercolumn',
+                        summaryType: 'sum',
+                        summaryRenderer: function(v, params, data) {
+                            return 'Total ' + v;
+                        },
                         editor: {
                             xtype: 'textfield',
                             allowBlank: false
@@ -86,14 +102,23 @@
                         edit.cancelEdit();
                         this.store.insert(0, new Apunte());
                         edit.startEdit(0, 0);
+                    },
+                    afterrender: function(grid, options) {
+                        grid.getView().getFeature('group').disable();
                     }
                 }
             });
+            cuentaStore = Ext.data.StoreManager.lookup('cuentaStore');
+            cuentaStore.on('load', function() {
+                gridPanel.getView().refresh()
+            });
+            empresaStore = Ext.data.StoreManager.lookup('empresaStore');
+            empresaStore.on('load', function() {
+                gridPanel.getView().refresh()
+            });
+
         });
-        cuentaStore = Ext.data.StoreManager.lookup('cuentaStore');
-        cuentaStore.on('load',function(){gridPanel.getView().refresh()});
-        empresaStore = Ext.data.StoreManager.lookup('empresaStore');
-        empresaStore.on('load',function(){gridPanel.getView().refresh()});
+
     </script>
     ]]>
 </f:section>
