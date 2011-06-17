@@ -1,18 +1,19 @@
 <?php
-declare(ENCODING = 'utf-8');
+declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\TypeConverters;
 /**
  * Esta clase se encarga de transformar parametros pasados como JSON a objetos de tipo Domain\Model\XXX
  * si en el constructor se especifica un string con el nombre de la clase (cualificado con el namespace) al que se
  * intentara forzar esa transfomacion a ese tipo de objeto, si no se especifica se empleara el objeto especificado en el
  * signature del metodo de Action para el que se esa este TypeConverter
- * 
+ *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
  * @scope singleton
  * @author Fernando Arconada
  */
-class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTypeConverter {
+class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTypeConverter
+{
     /**
      * @var string Clase a la que intentar forzar la transformacion
      */
@@ -23,36 +24,40 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
      *
      * @param string $targetType nombre de la clase (cualificado con el namespace) al que se intentara forzar la tranformacion
      */
-    public function __construct($targetType='') {
-        if($targetType){
+    public function __construct($targetType = '')
+    {
+        if ($targetType) {
             $this->forcedTargetType = $targetType;
         }
     }
-    /**
-	 * @var \F3\FLOW3\Reflection\ReflectionService
-	 */
-	protected $reflectionService;
 
     /**
-	 * @var \F3\FLOW3\Persistence\PersistenceManagerInterface
-	 */
-	protected $persistenceManager;
+     * @var \F3\FLOW3\Reflection\ReflectionService
+     */
+    protected $reflectionService;
 
     /**
-	 * @param \F3\FLOW3\Persistence\PersistenceManagerInterface $persistenceManager
-	 * @return void
-	 */
-	public function injectPersistenceManager(\F3\FLOW3\Persistence\PersistenceManagerInterface $persistenceManager) {
-		$this->persistenceManager = $persistenceManager;
-	}
+     * @var \F3\FLOW3\Persistence\PersistenceManagerInterface
+     */
+    protected $persistenceManager;
 
     /**
-	 * @param \F3\FLOW3\Reflection\ReflectionService $reflectionService
-	 * @return void
-	 */
-	public function injectReflectionService(\F3\FLOW3\Reflection\ReflectionService $reflectionService) {
-		$this->reflectionService = $reflectionService;
-	}
+     * @param \F3\FLOW3\Persistence\PersistenceManagerInterface $persistenceManager
+     * @return void
+     */
+    public function injectPersistenceManager(\F3\FLOW3\Persistence\PersistenceManagerInterface $persistenceManager)
+    {
+        $this->persistenceManager = $persistenceManager;
+    }
+
+    /**
+     * @param \F3\FLOW3\Reflection\ReflectionService $reflectionService
+     * @return void
+     */
+    public function injectReflectionService(\F3\FLOW3\Reflection\ReflectionService $reflectionService)
+    {
+        $this->reflectionService = $reflectionService;
+    }
 
     /**
      * Actually convert from $sourceArray to $targetType, taking into account the fully
@@ -77,16 +82,16 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
         if ($this->forcedTargetType) {
             $targetType = $this->forcedTargetType;
         }
-        
-        if(is_string($source)) {
-            $source = json_decode($source,true);
+
+        if (is_string($source)) {
+            $source = json_decode($source, true);
         }
         $entity = $this->persistenceManager->getObjectByIdentifier($source['id'], $targetType);
-        if(!$entity) {
+        if (!$entity) {
             $entity = new $targetType();
         }
-        if(is_array($source)) {
-                $entity = $this->hydrateObjectWhithArray($source, $entity);
+        if (is_array($source)) {
+            $entity = $this->hydrateObjectWhithArray($source, $entity);
         }
         return $entity;
     }
@@ -105,13 +110,17 @@ class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTyp
     {
         $classSchema = $this->reflectionService->getClassSchema($targetObject);
         foreach ($sourceArray as $property => $value) {
-            if (\F3\FLOW3\Reflection\ObjectAccess::isPropertySettable($targetObject,$property) ) {
+            if (\F3\FLOW3\Reflection\ObjectAccess::isPropertySettable($targetObject, $property)) {
                 $propertyMetadata = $classSchema->getProperty($property);
-                if(preg_match('/Domain\\\\Model\\\\/',$propertyMetadata['type'])) {
-                    $relatedEntity = $this->persistenceManager->getObjectByIdentifier($value, $propertyMetadata['type']);
-                    $value = $relatedEntity;
+                if (preg_match('/DateTime/', $propertyMetadata['type'])) {
+                    $value = new \DateTime($value);
+                } else {
+                    if (preg_match('/Domain\\\\Model\\\\/', $propertyMetadata['type'])) {
+                        $relatedEntity = $this->persistenceManager->getObjectByIdentifier($value, $propertyMetadata['type']);
+                        $value = $relatedEntity;
+                    }
                 }
-                \F3\FLOW3\Reflection\ObjectAccess::setProperty($targetObject,$property,$value);
+                \F3\FLOW3\Reflection\ObjectAccess::setProperty($targetObject, $property, $value);
             }
         }
         return $targetObject;

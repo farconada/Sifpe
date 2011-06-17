@@ -7,7 +7,8 @@ Ext.define('Apunte', {
         },
         {
             name: 'fecha',
-            type: 'date'
+            type: 'date',
+            format: 'Y-m-d'
         },
         {
             name: 'notas',
