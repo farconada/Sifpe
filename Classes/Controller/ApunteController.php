@@ -36,4 +36,15 @@ class ApunteController extends AbstractController
         $this->view->assign('value', $output);
     }
 
+    /**
+     * @param int $start
+     * @return void
+     */
+    public function listResumenPorCuentaAction($start = 0){
+        $items = $this->entityRepository->getTotalCuentasMensual($start);
+        $output['data'] = $items;
+        $output['total'] = count($items);
+        $this->view->assign('value', $output);
+    }
+
 }

@@ -10,6 +10,12 @@ namespace F3\Sifpe\Domain\Repository;
  */
   
 class ApunteRepository extends \F3\FLOW3\Persistence\Repository {
+    /**
+     * @inject
+	 * @var \F3\FLOW3\Object\ObjectManagerInterface
+	 */
+	protected $objectManager;
+
 
     /**
      * Devuelve los Apuntes de un mes ya sea el mes actual (por defecto) o X meses atras desde este mes
@@ -57,7 +63,15 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository {
      * @return array
      */
     public function getTotalCuentasMensual($mesesAtras = 0) {
+        $mesesAtras = $mesesAtras + 0;
+        $fechaInicial = new \DateTime("first day of $mesesAtras month ago");
+        $fechaFinal = new \DateTime("last day of $mesesAtras month ago");
 
+        $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
+        $entityManager = $entityManagerFactory->create();
+        $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad, c.name AS cuenta FROM '.$this->objectType .' g JOIN g.cuenta c WHERE g.fecha <=:fechaFinal AND g.fecha >=:fechaInicial GROUP BY c.id');
+   
+        return $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
     }
 
     /**
