@@ -19,7 +19,7 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository {
      * @param int $mesesAtras Numero de meses atras para los que devolver el listado
      * @return \Doctrine_Collection
      */
-    public function findApuntesDelMes($mesesAtras = 0) {
+    public function findPorMes($mesesAtras = 0) {
         $mesesAtras = $mesesAtras + 0;
         $fechaInicial = new \DateTime("first day of $mesesAtras month ago");
         $fechaFinal = new \DateTime("last day of $mesesAtras month ago");
@@ -48,5 +48,25 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository {
         $mesesRegistrados = ($dateInterval->y * 12) + $dateInterval->m;
 
         return $mesesRegistrados;
+    }
+
+    /**
+     * Devuelve una lista de cuentas con el total por cuenta de cada mes
+     *
+     * @param int $mesesAtras Numero de meses atras para los que devolver el listado
+     * @return array
+     */
+    public function getTotalCuentasMensual($mesesAtras = 0) {
+
+    }
+
+    /**
+     * Devuelve el total de los apuntes de un mes para los doces meses del año de enero a dicimbre
+     *
+     * @param  $aniosAtras Mumero de años atras para los que devolver el listado
+     * @return array
+     */
+    public function getResumenAnual($aniosAtras){
+
     }
 }

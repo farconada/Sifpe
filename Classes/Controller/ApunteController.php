@@ -30,7 +30,7 @@ class ApunteController extends AbstractController
      */
     public function listAction($start = 0)
     {
-        $items = $this->entityRepository->findApuntesDelMes($start);
+        $items = $this->entityRepository->findPorMes($start);
         $output = $this->getOutputArray($items);
         $output['totalMeses'] = $this->entityRepository->getTotalMesesRegistrados();
         $this->view->assign('value', $output);
