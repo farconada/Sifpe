@@ -21,34 +21,35 @@
     <link href="http://fonts.googleapis.com/css?family=Nova+Script:regular" rel="stylesheet" type="text/css">
 </head>
 <body>
-<header>
-    <h1>SIFPE v4</h1>
-    <nav>
-        <ul class="menu">
-            <li class="first">
-                <f:link.action action="index" controller="Gasto">Gastos</f:link.action>
-            </li>
-            <li>
-                <f:link.action action="index" controller="Ingreso">Ingresos</f:link.action>
-            </li>
-            <li>
-                <f:link.action action="index" controller="Cuenta">Cuentas</f:link.action>
-            </li>
-            <li>
-                <f:link.action action="index" controller="GrupoCuenta">Grupos de cuentas</f:link.action>
-            </li>
-            <li class="last">
-                <f:link.action action="index" controller="Empresa">Empresas</f:link.action>
-            </li>
-        </ul>
-    </nav>
-</header>
-<section>
-    <div id="mainbox">
-        <f:render section="mainbox"/>
-        <div id="my-app"></div>
-    </div>
-</section>
-
+<div id="container">
+    <header>
+        <h1>SIFPE v4</h1>
+        <nav>
+            <ul class="menu">
+                <li class="first">
+                    <f:link.action action="index" controller="Gasto">Gastos</f:link.action>
+                </li>
+                <li>
+                    <f:link.action action="index" controller="Ingreso">Ingresos</f:link.action>
+                </li>
+                <li>
+                    <f:link.action action="index" controller="Cuenta">Cuentas</f:link.action>
+                </li>
+                <li>
+                    <f:link.action action="index" controller="GrupoCuenta">Grupos</f:link.action>
+                </li>
+                <li class="last">
+                    <f:link.action action="index" controller="Empresa">Empresas</f:link.action>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div id="mainbox">
+            <f:render section="mainbox"/>
+            <div id="my-app"></div>
+        </div>
+    </section>
+</div>
 </body>
 </html>
