@@ -8,7 +8,7 @@ namespace F3\Sifpe\Controller;
  * @author Fernando Arconada
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @package Sifpe
- * @abstract/media/57DA-1EAC/sifpe3.sql
+ * @abstract
  */
 class ApunteController extends AbstractController
 {
