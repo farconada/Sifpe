@@ -50,9 +50,16 @@ class ApunteController extends AbstractController
         foreach ($cuentasMesAnterior as $cuenta) {
             $resultado[$cuenta['cuenta']]['cantidad_anterior'] = $cuenta['cantidad'];
         }
+        $i=0;
+        $resultadoPlain = array();
+        foreach ($resultado as $cuenta => $resultadoItem) {
+            $resultadoPlain[$i]['cuenta'] = $cuenta;
+            $resultadoPlain[$i]['cantidad'] = isset($resultadoItem['cantidad']) ? $resultadoItem['cantidad'] : 0;
+            $resultadoPlain[$i]['cantidad_anterior'] = isset($resultadoItem['cantidad_anterior']) ? $resultadoItem['cantidad_anterior'] : 0;
+            $i++;
+        }
 
-        $resultado;
-        $output['data'] = $resultado;
+        $output['data'] = $resultadoPlain;
         $output['total'] = count($resultado);
         $this->view->assign('value', $output);
     }
