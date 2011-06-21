@@ -126,47 +126,56 @@
                 proxy: {
                     type: 'ajax',
                     encode: true,
-                    url: baseUrl + 'gasto/listResumenPorCuenta',
+                    url: '/fe/listResumenPorCuenta.json',
                     reader: {
                         type: 'json',
                         root: 'data'
                     }
                 }
             });
-            mchart = Ext.create('Ext.chart.Chart', {
-                renderTo: Ext.get('charts'),
+
+            var chartCuentas = Ext.create('Ext.panel.Panel', {
                 width: '100%',
-                height: 400,
-                animate: true,
-                store: resumenCuentaStore,
-                shadow: true,
-                legend: {
-                    position: 'right'
-                },
-                axes: [
-                    {
-                        type: 'Numeric',
-                        position: 'bottom',
-                        fields: ['cantidad','cantidad_anterior'],
-                        minimum: 0,
-                        grid: true,
-                        title: 'Cantidad'
-                    },
-                    {
-                        type: 'Category',
-                        position: 'left',
-                        fields: ['cuenta'],
-                        title: 'Cuenta'
-                    }
-                ],
-                series: [
-                    {
-                        type: 'bar',
-                        axis: 'bottom',
-                        xField: 'cuenta',
-                        yField: ['cantidad','cantidad_anterior']
-                    }
-                ]
+                height: 200,
+                hidden: false,
+                title: 'Bar Chart',
+                renderTo: Ext.get('charts'),
+                layout: 'fit',
+                style: 'padding:5px',
+                border:false,
+                preventHeader: true,
+                items: {
+                    id: 'chartCmp',
+                    xtype: 'chart',
+                    animate: true,
+                    shadow: true,
+                    store: resumenCuentaStore,
+                    axes: [
+                        {
+                            type: 'Numeric',
+                            position: 'left',
+                            fields: ['cantidad','cantidad_anterior'],
+                            title: 'Cantidad',
+                            grid: true,
+                            minimum: 0
+                        },
+                        {
+                            type: 'Category',
+                            position: 'bottom',
+                            fields: ['cuenta'],
+                            title: 'Cuenta'
+                        }
+                    ],
+                    series: [
+                        {
+                            type: 'column',
+                            axis: 'left',
+                            highlight: true,
+                            xField: 'cuenta',
+                            yField: ['cantidad','cantidad_anterior']
+                        }
+                    ]
+                }
             });
 
 
