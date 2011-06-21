@@ -54,8 +54,8 @@ class ApunteController extends AbstractController
         $resultadoPlain = array();
         foreach ($resultado as $cuenta => $resultadoItem) {
             $resultadoPlain[$i]['cuenta'] = $cuenta;
-            $resultadoPlain[$i]['cantidad'] = isset($resultadoItem['cantidad']) ? $resultadoItem['cantidad'] : 0;
-            $resultadoPlain[$i]['cantidad_anterior'] = isset($resultadoItem['cantidad_anterior']) ? $resultadoItem['cantidad_anterior'] : 0;
+            $resultadoPlain[$i]['cantidad'] = isset($resultadoItem['cantidad']) ? $resultadoItem['cantidad']+0 : 0;
+            $resultadoPlain[$i]['cantidad_anterior'] = isset($resultadoItem['cantidad_anterior']) ? $resultadoItem['cantidad_anterior']+0 : 0;
             $i++;
         }
 
