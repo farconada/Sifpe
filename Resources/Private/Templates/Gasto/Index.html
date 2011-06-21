@@ -118,65 +118,85 @@
             });
 
             resumenCuentaStore = Ext.create('Ext.data.Store', {
-                storeId:'cuentaStore',
-                autoLoad: true,
-                pageSize: 1,
-                totalProperty: 'total',
-                fields: ['cuenta', 'cantidad', 'cantidad_anterior' ],
-                proxy: {
-                    type: 'ajax',
-                    encode: true,
-                    url: '/fe/listResumenPorCuenta.json',
-                    reader: {
-                        type: 'json',
-                        root: 'data'
-                    }
-                }
-            });
+                        storeId:'cuentaStore',
+                        autoLoad: true,
+                        pageSize: 1,
+                        totalProperty: 'total',
+                        fields: ['cuenta', 'cantidad', 'cantidad_anterior' ],
+                        proxy: {
+                            type: 'ajax',
+                            encode: true,
+                            url: '/fe/listResumenPorCuenta.json',
+                            reader: {
+                                type: 'json',
+                                root: 'data'
+                            }
+                        }
+                    });
 
-            var chartCuentas = Ext.create('Ext.panel.Panel', {
-                width: '100%',
-                height: 200,
-                hidden: false,
-                title: 'Bar Chart',
-                renderTo: Ext.get('charts'),
-                layout: 'fit',
-                style: 'padding:5px',
-                border:false,
-                preventHeader: true,
-                items: {
-                    id: 'chartCmp',
-                    xtype: 'chart',
-                    animate: true,
-                    shadow: true,
-                    store: resumenCuentaStore,
-                    axes: [
-                        {
-                            type: 'Numeric',
-                            position: 'left',
-                            fields: ['cantidad','cantidad_anterior'],
-                            title: 'Cantidad',
-                            grid: true,
-                            minimum: 0
-                        },
-                        {
-                            type: 'Category',
-                            position: 'bottom',
-                            fields: ['cuenta'],
-                            title: 'Cuenta'
+                    var panel = Ext.create('Ext.panel.Panel', {
+                        width: '100%',
+                        height: 200,
+                        hidden: false,
+                        title: 'Bar Chart',
+                        renderTo: Ext.get('charts'),
+                        layout: 'fit',
+                        style: 'padding:5px',
+                        border:false,
+                        preventHeader: true,
+                        items: {
+                            id: 'chartCmp',
+                            xtype: 'chart',
+                            animate: true,
+                            shadow: true,
+                            store: resumenCuentaStore,
+                            legend: {
+                                position: 'right'
+                            },
+                            axes: [
+                                {
+                                    type: 'Numeric',
+                                    position: 'left',
+                                    fields: ['cantidad','cantidad_anterior'],
+                                    grid: true,
+                                    minimum: 0
+                                },
+                                {
+                                    type: 'Category',
+                                    position: 'bottom',
+                                    fields: ['cuenta'],
+                                    label: {
+                                        renderer: function (value) {
+                                            if (value.length >= 10) {
+                                                return value.substring(0, 15);
+                                            }
+                                            return value;
+                                        },
+                                        rotate: {
+                                            degrees: 20
+                                        }
+                                    }
+                                }
+                            ],
+                            series: [
+                                {
+                                    type: 'column',
+                                    axis: 'left',
+                                    highlight: true,
+                                    xField: 'cuenta',
+                                    yField: ['cantidad','cantidad_anterior'],
+                                    tips: {
+                                        trackMouse: true,
+                                        width: 74,
+                                        height: 38,
+                                        renderer: function(storeItem, item) {
+                                            this.setTitle(item.value[1]);
+                                        }
+                                    }
+                                }
+                            ]
                         }
-                    ],
-                    series: [
-                        {
-                            type: 'column',
-                            axis: 'left',
-                            highlight: true,
-                            xField: 'cuenta',
-                            yField: ['cantidad','cantidad_anterior']
-                        }
-                    ]
-                }
-            });
+                    });
 
 
         });
