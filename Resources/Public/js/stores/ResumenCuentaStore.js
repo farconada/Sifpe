@@ -1,0 +1,16 @@
+Ext.create('Ext.data.Store', {
+    storeId:'resumenCuentaStore',
+    autoLoad: true,
+    pageSize: 1,
+    totalProperty: 'total',
+    fields: ['cuenta', 'cantidad', 'cantidad_anterior' ],
+    proxy: {
+        type: 'ajax',
+        encode: true,
+        url: '/gasto/listResumenPorCuenta',
+        reader: {
+            type: 'json',
+            root: 'data'
+        }
+    }
+});
