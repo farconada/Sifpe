@@ -47,7 +47,11 @@ Ext.define('Sifpe.chart.ResumenCuenta', {
                         width: 74,
                         height: 38,
                         renderer: function(storeItem, item) {
-                            this.setTitle(item.value[1]);
+                            var cuenta = item.value[0];
+                            if (cuenta.length >= 10) {
+                                cuenta = cuenta.substring(0, 15);
+                            }
+                            this.setTitle(cuenta + ' ' + item.value[1]);
                         }
                     }
                 }
