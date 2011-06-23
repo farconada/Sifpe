@@ -84,6 +84,13 @@ Ext.define('Sifpe.grid.Apunte', {
         });
         this.callParent();
 
+    },
+    onAddClick: function() {
+        this.fireEvent('addclick', this);
+        edit = this.editing;
+        edit.cancelEdit();
+        this.store.insert(0, new Apunte());
+        edit.startEdit(0, 0);
     }
 
 
