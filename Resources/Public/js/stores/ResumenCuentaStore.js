@@ -7,7 +7,7 @@ Ext.create('Ext.data.Store', {
     proxy: {
         type: 'ajax',
         encode: true,
-        url: '/gasto/listResumenPorCuenta',
+        url: baseUrl + '/gasto/listResumenPorCuenta',
         reader: {
             type: 'json',
             root: 'data'
