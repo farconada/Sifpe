@@ -11,6 +11,7 @@ Ext.define('Sifpe.chart.ResumenMes', {
             },
             shadow: true,
             store: Ext.data.StoreManager.lookup('resumenMesStore'),
+            flex: 1,
             axes: [
                 {
                     type: 'gauge',
@@ -25,8 +26,7 @@ Ext.define('Sifpe.chart.ResumenMes', {
                 {
                     type: 'gauge',
                     donut: 30,
-                    axis: 'left',
-                    field: ['porcentaje']
+                    field: 'porcentaje'
                 }
             ]
         });
