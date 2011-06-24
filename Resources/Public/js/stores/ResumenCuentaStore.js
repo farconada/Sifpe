@@ -1,6 +1,6 @@
 Ext.create('Ext.data.Store', {
     storeId:'resumenCuentaStore',
-    autoLoad: true,
+    autoLoad: false,
     pageSize: 1,
     totalProperty: 'total',
     fields: ['cuenta', 'cantidad', 'cantidad_anterior' ],

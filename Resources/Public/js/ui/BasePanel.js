@@ -38,6 +38,7 @@ Ext.define('Sifpe.grid.Base', {
                 }
             ],
             bbar: Ext.create('Ext.PagingToolbar', {
+                id: 'gridPaging',
                 store: this.store,
                 displayInfo: true,
                 displayMsg: 'Mostrando elementos {0} - {1} de {2}',

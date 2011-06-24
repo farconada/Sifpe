@@ -7,9 +7,6 @@ Ext.define('Sifpe.chart.ResumenCuenta', {
             animate: true,
             shadow: true,
             store: Ext.data.StoreManager.lookup('resumenCuentaStore'),
-            legend: {
-                position: 'bottom'
-            },
             axes: [
                 {
                     type: 'Numeric',

@@ -40,12 +40,14 @@
                 layout: 'hbox',
                 items: [
                     {
+                        id: 'resumencuenta',
                         xtype: 'resumencuentachart',
                         width: '100%',
                         height: 200,
                         flex: 5
                     },
                     {
+                        id: 'resumenmes',
                         xtype: 'resumenmespanel',
                         width: '100%',
                         height: 200,
@@ -54,14 +56,15 @@
                 ]
             });
 
-            var chartsMesPanel = Ext.create('Ext.container.Container', {
+            var chartsAnioPanel = Ext.create('Ext.container.Container', {
                 width: '100%',
                 height: 200,
                 hidden: false,
-                renderTo: Ext.get('charts-mes'),
+                renderTo: Ext.get('charts-anio'),
                 layout: 'fit',
                 items: [
                     {
+                        id: 'resumenanio',
                         xtype: 'resumenaniochart',
                         width: '100%',
                         height: 200
@@ -78,11 +81,19 @@
                 gridPanel.getView().refresh()
             });
 
+            var paging = gridPanel.getComponent('gridPaging');
+            paging.on('change', function(paging, pageData, options) {
+                resumenCuentaStore = Ext.data.StoreManager.lookup('resumenCuentaStore');
+                resumenCuentaStore.loadPage(pageData.currentPage);
+                resumenMesStore = Ext.data.StoreManager.lookup('resumenMesStore');
+                resumenMesStore.loadPage(pageData.currentPage);
+            });
+
 
         });
 
     </script>
     ]]>
     <div id="charts-mes"></div>
-     <div id="charts-anio"></div>
+    <div id="charts-anio"></div>
 </f:section>
