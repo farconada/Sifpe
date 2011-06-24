@@ -64,4 +64,13 @@ class ApunteController extends AbstractController
         $this->view->assign('value', $output);
     }
 
+    /**
+     * @param int $start
+     * @return void
+     */
+    public function listResumenAnualAction($start = 0) {
+        $items = $this->entityRepository->getResumenAnual($start);
+        var_dump($items);
+    }
+
 }
