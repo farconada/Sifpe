@@ -8,6 +8,7 @@
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ApunteGridPanel.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenCuentaChart.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenMesChart.js')}"></script>
 </f:section>
 
 <f:section name="mainbox">
@@ -51,9 +52,16 @@
                 renderTo: Ext.get('charts'),
                 layout: 'fit',
                 style: 'padding:5px',
-                items: {
-                    xtype: 'resumencuentachart'
-                }
+                items: [
+                    {
+                        xtype: 'resumencuentachart',
+                        flex: 5
+                    },
+                    {
+                        xtype: 'resumenmespanel',
+                        flex: 1
+                    }
+                ]
             });
 
 

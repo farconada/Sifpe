@@ -14,9 +14,10 @@ Ext.create('Ext.data.Store', {
     proxy: {
         type: 'ajax',
         encode: true,
-        url: '/fe/resumenMes.json',
+        url: baseUrl + '/gasto/listResumenMes',
         reader: {
-            type: 'json'
+            type: 'json',
+            root: 'data'
         }
     }
 });
