@@ -99,7 +99,7 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
             $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM ' . $this->objectType . ' g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
 
             $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
-            $result[$i]['cantidad'] = $res[0]['cantidad'];
+            $result[$i]['cantidad'] = $res[0]['cantidad']+0;
             $fechaInicial->add(new \DateInterval('P0Y1M'));
         }
         return $result;
@@ -116,10 +116,10 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
         $entityManager = $entityManagerFactory->create();
         $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM \F3\Sifpe\Domain\Model\Gasto g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
         $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
-        $result['gastos'] = $res[0]['cantidad'] ? $res[0]['cantidad'] : 0;
+        $result['gastos'] = $res[0]['cantidad'] ? $res[0]['cantidad']+0 : 0;
         $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM \F3\Sifpe\Domain\Model\Ingreso g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
         $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
-        $result['ingresos'] = $res[0]['cantidad'] ? $res[0]['cantidad'] : 0;
+        $result['ingresos'] = $res[0]['cantidad'] ? $res[0]['cantidad']+0  : 0;
         return $result;
 
     }

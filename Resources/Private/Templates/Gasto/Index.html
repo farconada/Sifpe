@@ -5,10 +5,13 @@
     <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/CuentaStore.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/EmpresaStore.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ResumenCuentaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ResumenMesStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ResumenAnioStore.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ApunteGridPanel.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenCuentaChart.js')}"></script>
     <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenMesChart.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenAnioChart.js')}"></script>
 </f:section>
 
 <f:section name="mainbox">
@@ -23,16 +26,47 @@
                 store: Ext.data.StoreManager.lookup('gastoStore'),
                 renderTo: Ext.get('my-app'),
                 listeners: {
-                    addclick: function() {
-                        edit = this.editing;
-                        edit.cancelEdit();
-                        this.store.insert(0, new Apunte());
-                        edit.startEdit(0, 0);
-                    },
                     afterrender: function(grid, options) {
                         grid.getView().getFeature('group').disable();
                     }
                 }
+            });
+
+            var chartsMesPanel = Ext.create('Ext.container.Container', {
+                width: '100%',
+                height: 200,
+                hidden: false,
+                renderTo: Ext.get('charts-mes'),
+                layout: 'hbox',
+                items: [
+                    {
+                        xtype: 'resumencuentachart',
+                        width: '100%',
+                        height: 200,
+                        flex: 5
+                    },
+                    {
+                        xtype: 'resumenmespanel',
+                        width: '100%',
+                        height: 200,
+                        flex: 1
+                    }
+                ]
+            });
+
+            var chartsMesPanel = Ext.create('Ext.container.Container', {
+                width: '100%',
+                height: 200,
+                hidden: false,
+                renderTo: Ext.get('charts-mes'),
+                layout: 'fit',
+                items: [
+                    {
+                        xtype: 'resumenaniochart',
+                        width: '100%',
+                        height: 200
+                    }
+                ]
             });
 
             var cuentaStore = Ext.data.StoreManager.lookup('cuentaStore');
@@ -45,29 +79,10 @@
             });
 
 
-            var chartsPanel = Ext.create('Ext.container.Container', {
-                width: '100%',
-                height: 200,
-                hidden: false,
-                renderTo: Ext.get('charts'),
-                layout: 'fit',
-                style: 'padding:5px',
-                items: [
-                    {
-                        xtype: 'resumencuentachart',
-                        flex: 5
-                    },
-                    {
-                        xtype: 'resumenmespanel',
-                        flex: 1
-                    }
-                ]
-            });
-
-
         });
 
     </script>
     ]]>
-    <div id="charts"></div>
+    <div id="charts-mes"></div>
+     <div id="charts-anio"></div>
 </f:section>
