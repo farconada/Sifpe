@@ -70,7 +70,20 @@ class ApunteController extends AbstractController
      */
     public function listResumenAnualAction($start = 0) {
         $items = $this->entityRepository->getResumenAnual($start);
-        var_dump($items);
+        $itemsAnterior = $this->entityRepository->getResumenAnual($start+1);
+        $i = 0;
+        $resultado = array();
+        foreach ($items as $mes) {
+            $resultado[$i]['mes'] = $mes['mes'];
+            $resultado[$i]['cantidad'] = $mes['cantidad'] ? $mes['cantidad'] : 0 ;
+            $resultado[$i]['cantidad_anterior'] = $itemsAnterior[$i]['cantidad'] ?  $itemsAnterior[$i]['cantidad']: 0;
+            $i++;
+        }
+
+        $output['data'] = $resultado;
+        $output['total'] = count($resultado);
+        $this->view->assign('value', $output);
+
     }
 
 }
