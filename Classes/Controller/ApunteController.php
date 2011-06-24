@@ -86,4 +86,14 @@ class ApunteController extends AbstractController
 
     }
 
+    /**
+     * @param int $start
+     * @return void
+     */
+    public function listResumenMesAction($start = 0){
+        $items = $this->entityRepository->getResumenMes($start);
+        $output['data'] = $items;
+        $this->view->assign('value', $output);
+    }
+
 }

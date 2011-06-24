@@ -105,4 +105,22 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
         return $result;
 
     }
+
+    public function getResumenMes($mesesAtras)
+    {
+        $fechaInicial = new \DateTime("first day of $mesesAtras month ago");
+        $fechaFinal = new \DateTime("last day of $mesesAtras month ago");
+        $result = array();
+
+        $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
+        $entityManager = $entityManagerFactory->create();
+        $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM \F3\Sifpe\Domain\Model\Gasto g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
+        $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
+        $result['gastos'] = $res[0]['cantidad'] ? $res[0]['cantidad'] : 0;
+        $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM \F3\Sifpe\Domain\Model\Ingreso g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
+        $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
+        $result['ingresos'] = $res[0]['cantidad'] ? $res[0]['cantidad'] : 0;
+        return $result;
+
+    }
 }
