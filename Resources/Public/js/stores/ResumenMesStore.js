@@ -1,6 +1,6 @@
 Ext.create('Ext.data.Store', {
     storeId:'resumenMesStore',
-    autoLoad: true,
+    autoLoad: false,
     pageSize: 1,
     fields: ['ingresos','gastos',
         {   name:'porcentaje',
