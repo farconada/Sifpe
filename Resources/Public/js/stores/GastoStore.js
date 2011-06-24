@@ -4,7 +4,6 @@ Ext.create('Ext.data.Store', {
     pageSize: 1,
     totalProperty: 'totalMeses',
     autoSync: true,
-    groupField: 'cuenta',
     model: 'Apunte',
     proxy: {
         type: 'ajax',
