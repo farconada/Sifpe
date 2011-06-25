@@ -3,7 +3,7 @@
   uriPattern:    ''
   defaults:
     '@package':    Sifpe
-    '@controller': Empresa
+    '@controller': Gasto
     '@action':     index
     '@format':     html
 ##########################################################
@@ -141,3 +141,22 @@
     '@controller': Ingreso
     '@action':     list
     '@format':     json
+##########################################################
+###  Backup
+##########################################################
+-
+  name: 'backup default'
+  uriPattern:    'backup(/)'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Backup
+    '@action':     index
+    '@format':     html
+-
+  name: 'backup index'
+  uriPattern:    'backup/index'
+  defaults:
+    '@package':    Sifpe
+    '@controller': Backup
+    '@action':     index
+    '@format':     html
