@@ -8,13 +8,6 @@ Ext.define('Sifpe.grid.Apunte', {
         });
         Ext.apply(this, {
             features: [this.groupingFeature],
-            fbar  : ['->', {
-                text:'Desagrupar',
-                iconCls: 'icon-clear-group',
-                handler : function() {
-                    this.groupingFeature.disable();
-                }
-            }],
             columns: [
                 {
                     header: 'fecha',

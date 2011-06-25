@@ -83,10 +83,23 @@
 
             var paging = gridPanel.getComponent('gridPaging');
             paging.on('change', function(paging, pageData, options) {
-                resumenCuentaStore = Ext.data.StoreManager.lookup('resumenCuentaStore');
+                var resumenCuentaStore = Ext.data.StoreManager.lookup('resumenCuentaStore');
                 resumenCuentaStore.loadPage(pageData.currentPage);
-                resumenMesStore = Ext.data.StoreManager.lookup('resumenMesStore');
+
+                var resumenMesStore = Ext.data.StoreManager.lookup('resumenMesStore');
                 resumenMesStore.loadPage(pageData.currentPage);
+
+                var today = new Date();
+                var aniosAtras = 0;
+                var gastoStore = Ext.data.StoreManager.lookup('gastoStore');
+                if(gastoStore.data.items[0]){
+                    aniosAtras = today.getFullYear() - gastoStore.data.items[0].data.fecha.getFullYear();
+                }
+                var resumenAnioStore = Ext.data.StoreManager.lookup('resumenAnioStore');
+                resumenAnioStore.loadPage(aniosAtras+1);
+                
+                gridPanel.setTitle('Gestion de Gastos. Este mes seleccionado (' + gastoStore.sum('cantidad')+'eur)')
+
             });
 
 

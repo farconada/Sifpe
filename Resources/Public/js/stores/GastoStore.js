@@ -2,7 +2,6 @@ Ext.create('Ext.data.Store', {
     storeId:'gastoStore',
     autoLoad: true,
     pageSize: 1,
-    totalProperty: 'totalMeses',
     autoSync: true,
     model: 'Apunte',
     proxy: {
@@ -11,7 +10,8 @@ Ext.create('Ext.data.Store', {
         url: baseUrl + 'gasto/list',
         reader: {
             type: 'json',
-            root: 'data'
+            root: 'data',
+            totalProperty: 'totalMeses'
         },
         writer: {
             type: 'json',
