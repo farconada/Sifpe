@@ -6,6 +6,9 @@ Ext.create('Ext.data.Store', {
         {   name:'porcentaje',
             mapping:0,
             convert: function (value, record) {
+                if(record.data.ingresos <= 0) {
+                    return 0;
+                }
                 return (record.data.gastos/record.data.ingresos)*100;
             }
         }
