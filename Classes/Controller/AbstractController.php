@@ -56,6 +56,9 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
      */
     public function errorAction($msg = '')
     {
+        if(get_class($this->view) == 'F3\Fluid\View\TemplateView') {
+            $this->view->setTemplatePathAndFilename('resource://'.$this->controllerContext->getRequest()->getControllerPackageKey().'/Private/Templates/Error.html');
+        }
         $this->view->assign('value', array(
                                           'success' => FALSE,
                                           'msg' => $msg
