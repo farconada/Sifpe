@@ -27,18 +27,18 @@ Ext.define('Apunte', {
             type: 'number'
         }
     ],
-    validations: [{
-        type: 'length',
-        field: 'empresa',
-        min: 1
-    },{
-        type: 'length',
-        field: 'cuenta',
-        min: 1
-    },{
-        type: 'length',
-        field: 'cantidad',
-        min: 1
-    }
+    validations: [
+        {
+            type: 'presence',
+            field: 'empresa'
+        },
+        {
+            type: 'presence',
+            field: 'cuenta'
+        },
+        {
+            type: 'presence',
+            field: 'cantidad'
+        }
     ]
 });
