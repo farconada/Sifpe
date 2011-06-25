@@ -6,7 +6,6 @@ Ext.define('Sifpe.chart.ResumenAnio', {
         Ext.apply(this, {
             animate: true,
             shadow: true,
-            store: Ext.data.StoreManager.lookup('resumenAnioStore'),
             legend: {
                 position: 'bottom'
             },

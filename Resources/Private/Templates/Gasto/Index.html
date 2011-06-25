@@ -24,12 +24,7 @@
             var gridPanel = Ext.create('Sifpe.grid.Apunte', {
                 title: 'Gestion de gastos',
                 store: Ext.data.StoreManager.lookup('gastoStore'),
-                renderTo: Ext.get('my-app'),
-                listeners: {
-                    afterrender: function(grid, options) {
-                        grid.getView().getFeature('group').disable();
-                    }
-                }
+                renderTo: Ext.get('my-app')
             });
 
             var chartsMesPanel = Ext.create('Ext.container.Container', {
@@ -66,6 +61,7 @@
                     {
                         id: 'resumenanio',
                         xtype: 'resumenaniochart',
+                        store: Ext.data.StoreManager.lookup('resumenGastosAnioStore'),
                         width: '100%',
                         height: 200
                     }
@@ -83,7 +79,7 @@
 
             var paging = gridPanel.getComponent('gridPaging');
             paging.on('change', function(paging, pageData, options) {
-                var resumenCuentaStore = Ext.data.StoreManager.lookup('resumenCuentaStore');
+                var resumenCuentaStore = Ext.data.StoreManager.lookup('resumenGastosCuentaStore');
                 resumenCuentaStore.loadPage(pageData.currentPage);
 
                 var resumenMesStore = Ext.data.StoreManager.lookup('resumenMesStore');
@@ -95,7 +91,7 @@
                 if(gastoStore.data.items[0]){
                     aniosAtras = today.getFullYear() - gastoStore.data.items[0].data.fecha.getFullYear();
                 }
-                var resumenAnioStore = Ext.data.StoreManager.lookup('resumenAnioStore');
+                var resumenAnioStore = Ext.data.StoreManager.lookup('resumenGastosAnioStore');
                 resumenAnioStore.loadPage(aniosAtras+1);
                 
                 gridPanel.setTitle('Gestion de Gastos. Este mes seleccionado (' + gastoStore.sum('cantidad')+'eur)')

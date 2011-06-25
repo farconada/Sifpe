@@ -1,14 +1,74 @@
-﻿﻿
-<f:layout name="Master"/>
+﻿<f:layout name="Master"/>
 <f:section name="header">
-
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ApunteModel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/IngresoStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/CuentaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/EmpresaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ResumenAnioStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ApunteGridPanel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenAnioChart.js')}"></script>
 </f:section>
 
 <f:section name="mainbox">
     <f:flashMessages class="flashmessages"/>
-    <ul>
-    <f:for each="{apuntes}" as="item">
-        <li>{item.id}</li>
-    </f:for>
-        </ul>
+    <![CDATA[
+    <script type="text/javascript">
+        Ext.onReady(function() {
+            Ext.QuickTips.init();
+
+            var gridPanel = Ext.create('Sifpe.grid.Apunte', {
+                title: 'Gestion de Ingresos',
+                store: Ext.data.StoreManager.lookup('ingresoStore'),
+                renderTo: Ext.get('my-app')
+            });
+
+            var chartsAnioPanel = Ext.create('Ext.container.Container', {
+                width: '100%',
+                height: 200,
+                hidden: false,
+                renderTo: Ext.get('charts-anio'),
+                layout: 'fit',
+                items: [
+                    {
+                        id: 'resumenanio',
+                        xtype: 'resumenaniochart',
+                        store: Ext.data.StoreManager.lookup('resumenIngresosAnioStore'),
+                        width: '100%',
+                        height: 200
+                    }
+                ]
+            });
+
+            var cuentaStore = Ext.data.StoreManager.lookup('cuentaStore');
+            cuentaStore.on('load', function() {
+                gridPanel.getView().refresh()
+            });
+            var empresaStore = Ext.data.StoreManager.lookup('empresaStore');
+            empresaStore.on('load', function() {
+                gridPanel.getView().refresh()
+            });
+
+            var paging = gridPanel.getComponent('gridPaging');
+            paging.on('change', function(paging, pageData, options) {
+                var today = new Date();
+                var aniosAtras = 0;
+                var ingresoStore = Ext.data.StoreManager.lookup('ingresoStore');
+                if(ingresoStore.data.items[0]){
+                    aniosAtras = today.getFullYear() - ingresoStore.data.items[0].data.fecha.getFullYear();
+                }
+                var resumenAnioStore = Ext.data.StoreManager.lookup('resumenIngresosAnioStore');
+                resumenAnioStore.loadPage(aniosAtras+1);
+                
+                gridPanel.setTitle('Gestion de Ingresos. Este mes seleccionado (' + ingresoStore.sum('cantidad')+'eur)')
+
+            });
+
+
+        });
+
+    </script>
+    ]]>
+    <div id="charts-mes"></div>
+    <div id="charts-anio"></div>
 </f:section>
