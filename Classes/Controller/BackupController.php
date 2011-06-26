@@ -28,6 +28,14 @@ class BackupController extends \F3\FLOW3\MVC\Controller\ActionController {
     }
 
     public function doBackupAction(){
+        $this->execBackup();
+    }
+
+    public function slotRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {
+        $this->execBackup();
+    }
+    
+    private function execBackup() {
         //Solo es valido para MySQL
         $date = new \DateTime();
         $cmd = '/usr/bin/mysqldump -uroot flow3 >'.$this->settings['backupDir'].'backup-'.$date->format('Ymd').'.sql';

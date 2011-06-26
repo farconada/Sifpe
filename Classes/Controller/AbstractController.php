@@ -85,12 +85,16 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
     public function deleteAction(\F3\Sifpe\Domain\EntityInterface $entity)
     {
         try {
+            //emit signal
+            $this->emitRecordPreDeleted($entity);
+            
             $this->persistenceManager->remove($entity);
             $this->persistenceManager->persistAll();
             $this->view->assign('value', array(
                                               'success' => TRUE,
                                               'msg' => 'Borrado'
                                          ));
+
         } catch (\Exception $ex) {
             $this->forward('error', NULL, NULL, array('msg' => $ex->getMessage()));
         }
@@ -152,5 +156,14 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
             $output['data'] = $items;
         }
         return $output;
+    }
+
+    /**
+     * @param \F3\Sifpe\Domain\EntityInterface $entity
+     * @return void
+     * @signal
+     */
+    protected function emitRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {
+
     }
 }
