@@ -6,9 +6,16 @@
 
 <f:section name="mainbox">
     <div id="backups-screen">
-    <f:flashMessages class="flashmessages"/>
-    <h2>Backups</h2>
-    <f:link.action action="dobackup" controller="Backup">Hacer backup ahora</f:link.action>
-        <p>Nota hacer los backups ejecutando una tarea de AT para conseguir que sean async</p>
+        <f:flashMessages class="flashmessages"/>
+        <h2>Backups</h2>
+        <f:link.action action="doBackup" controller="Backup">Hacer backup ahora</f:link.action>
+        <div id="backups-list">
+            <ul>
+                <f:for each="{files}" as="file">
+                    <li>{file.filename}</li>
+                </f:for>
+            </ul>
         </div>
+    </div>
+
 </f:section>

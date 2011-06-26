@@ -97,3 +97,32 @@ section {
   -o-box-shadow: 0 0 8px black;
   box-shadow: 0 0 8px black;
 }
+
+/* line 50, ../sass/sifpe.scss */
+#backups-screen {
+  padding: 20px;
+}
+/* line 52, ../sass/sifpe.scss */
+#backups-screen h2 {
+  font-size: x-large;
+  text-align: center;
+}
+/* line 56, ../sass/sifpe.scss */
+#backups-screen #backups-list {
+  margin: 20px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+  background-color: white;
+  -moz-box-shadow: 0 0 8px red;
+  -webkit-box-shadow: 0 0 8px red;
+  -o-box-shadow: 0 0 8px red;
+  box-shadow: 0 0 8px red;
+}
+/* line 57, ../sass/sifpe.scss */
+#backups-screen #backups-list ul {
+  padding: 20px;
+}

@@ -46,3 +46,20 @@ section {
     background-color: white;
     @include single-box-shadow(black,0,0,8px)
 }
+
+#backups-screen {
+    padding: 20px;
+    h2 {
+       font-size: x-large;
+       text-align: center;
+    }
+    #backups-list {
+        ul{
+            padding: 20px;
+        }
+        margin: 20px;
+        @include border-radius(10px);
+        background-color: white;
+        @include single-box-shadow(red,0,0,8px)
+    }
+}
