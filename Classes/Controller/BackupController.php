@@ -39,9 +39,23 @@ class BackupController extends \F3\FLOW3\MVC\Controller\ActionController {
     }
     
     private function execBackup() {
-        //Solo es valido para MySQL
+        $configurationManager = $this->objectManager->get('F3\FLOW3\Configuration\ConfigurationManager');
+        $settings = $configurationManager->getConfiguration(\F3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
+        $dbname = $settings['FLOW3']['persistence']['backendOptions']['dbname'];
+        $dbuser = $settings['FLOW3']['persistence']['backendOptions']['user'];
+        $dbpassword = $settings['FLOW3']['persistence']['backendOptions']['password'];
+
         $date = new \DateTime();
-        $cmd = '/usr/bin/mysqldump -uroot flow3 >'.$this->settings['backupDir'].'backup-'.$date->format('Ymd').'.sql';
+
+        //Solo es valido para MySQL
+        if ($settings['FLOW3']['persistence']['backendOptions']['driver']  == 'pdo_mysql') {
+            $mysqldumpCmd = '/usr/bin/mysqldump -u'.$dbuser . ' ' . $dbname;
+            if ($dbpassword) {
+                $mysqldumpCmd = $mysqldumpCmd.' -p'.$dbpassword;
+            }
+            $cmd = $mysqldumpCmd . '>'.$this->settings['backupDir'].'backup-'.$date->format('Ymd').'.sql';
+        }
+
         system('echo "'.$cmd.'"| at now +1min');
     }
  
