@@ -14,6 +14,9 @@ class BackupController extends \F3\FLOW3\MVC\Controller\ActionController {
      * @return void
      */
     public function indexAction() {
+        if (!isset($this->settings['backupDir']) || !is_readable($this->settings['backupDir'])) {
+            throw new \F3\FLOW3\Error\Exception('Falta la configuracion del directorio de backup o el directorio no se puede leer',1309161900);
+        }
         $iterator = new \DirectoryIterator($this->settings['backupDir']);
         $files = array();
         $i = 0;

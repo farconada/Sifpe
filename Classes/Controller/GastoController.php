@@ -25,11 +25,10 @@ class GastoController extends ApunteController
      */
     public function initializeAction()
     {
-        //ToDo adaptarlo a la nueva API
         if (isset($this->arguments['entity'])) {
             $this->arguments->getArgument('entity')
                     ->getPropertyMappingConfiguration()
-                    ->setTypeConverterOption('\F3\Sifpe\TypeConverters\JsonToEntityConverter','\F3\Sifpe\Domain\Model\Gasto');
+                    ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter('\F3\Sifpe\Domain\Model\Gasto'));
         }
         parent::initializeAction();
     }
