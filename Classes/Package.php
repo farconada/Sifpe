@@ -37,6 +37,7 @@ class Package extends BasePackage {
 	 * @return void
 	 */
 	public function boot(\F3\FLOW3\Core\Bootstrap $bootstrap) {
+        
         $dispatcher = $bootstrap->getSignalSlotDispatcher();
         $dispatcher->connect('F3\Sifpe\Controller\AbstractController', 'recordPreDeleted', 'F3\Sifpe\Controller\UtilController', 'slotRecordPreDeleted');
     }
