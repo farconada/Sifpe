@@ -23,6 +23,7 @@ class ApunteController extends AbstractController
             array(\Doctrine\ORM\Events::preUpdate, \Doctrine\ORM\Events::preRemove), $searchListener
         );
         $this->persistenceManager->injectEntityManager($entityManager);
+
     }
 
 
