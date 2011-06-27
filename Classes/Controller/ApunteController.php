@@ -12,15 +12,19 @@ namespace F3\Sifpe\Controller;
  */
 class ApunteController extends AbstractController
 {
+    /**
+     * @var \F3\Sifpe\Service\DoctrineEventListenerInterface
+     */
+    protected $doctrineEventListener;
+
     protected function initializeAction()
     {
         parent::initializeAction();
 
-        $searchListener = $this->objectManager->get('\F3\Sifpe\Service\SearchListenerService');
         $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
         $entityManager = $entityManagerFactory->create();
         $entityManager->getEventManager()->addEventListener(
-            array(\Doctrine\ORM\Events::preUpdate, \Doctrine\ORM\Events::preRemove), $searchListener
+            array(\Doctrine\ORM\Events::preUpdate, \Doctrine\ORM\Events::preRemove), $this->doctrineEventListener
         );
         $this->persistenceManager->injectEntityManager($entityManager);
 
