@@ -163,7 +163,5 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
      * @return void
      * @signal
      */
-    protected function emitRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {
-
-    }
+    protected function emitRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {}
 }
