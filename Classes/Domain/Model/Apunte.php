@@ -11,6 +11,7 @@ namespace F3\Sifpe\Domain\Model;
  
 /**
 * @MappedSuperclass
+* @HasLifecycleCallbacks
 * @entity
 */
 class Apunte implements \F3\Sifpe\Domain\EntityInterface {

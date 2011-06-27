@@ -9,6 +9,7 @@ namespace F3\Sifpe\Domain\Model;
  
 /**
  * @scope prototype
+ * @HasLifecycleCallbacks
  * @entity
  * @Table(name="gasto")
  */
