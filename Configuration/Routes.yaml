@@ -145,18 +145,18 @@
 ###  Backup
 ##########################################################
 -
-  name: 'backup default'
-  uriPattern:    'backup(/)'
+  name: 'util default'
+  uriPattern:    'util(/)'
   defaults:
     '@package':    Sifpe
-    '@controller': Backup
+    '@controller': Util
     '@action':     index
     '@format':     html
 -
-  name: 'backup index'
-  uriPattern:    'backup/index'
+  name: 'util index'
+  uriPattern:    'util/index'
   defaults:
     '@package':    Sifpe
-    '@controller': Backup
+    '@controller': Util
     '@action':     index
     '@format':     html

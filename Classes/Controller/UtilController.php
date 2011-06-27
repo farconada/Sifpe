@@ -3,11 +3,11 @@ declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Controller;
  
 /*
- * BackupController
+ * UtilController
  *
  * Gestion de Backups
  */
-class BackupController extends \F3\FLOW3\MVC\Controller\ActionController {
+class UtilController extends \F3\FLOW3\MVC\Controller\ActionController {
  
     /**
      * indexAction
