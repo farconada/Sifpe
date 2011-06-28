@@ -19,7 +19,7 @@ class ApunteController extends AbstractController
     protected $doctrineEventListener;
 
     /**
-     * @var \F3\Sifpe\Service\IndexedSearchInterface
+     * @var \F3\Sifpe\Service\IndexSearchInterface
      * @inject
      */
     protected $indexManager;

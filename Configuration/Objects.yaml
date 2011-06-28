@@ -3,4 +3,4 @@ F3\Sifpe\Controller\ApunteController:
     doctrineEventListener:
       object: F3\Sifpe\Service\SearchListenerService
     indexManager:
-      object: F3\Sifpe\Service\LuceneIndexedSearch
+      object: F3\Sifpe\Service\LuceneIndexedSearchService

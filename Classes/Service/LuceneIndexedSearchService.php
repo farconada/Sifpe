@@ -6,7 +6,7 @@ require_once 'Zend/Search/Lucene.php';
 /**
  * @scope singleton
  */
-class LuceneIndexedSearch implements IndexedSearchInterface {
+class LuceneIndexedSearchService implements IndexSearchInterface{
     protected $settings;
 
     protected $index;
@@ -33,7 +33,10 @@ class LuceneIndexedSearch implements IndexedSearchInterface {
 
     public function find($queryString)
     {
-        // TODO: Implement find() method.
+        $hits = $this->index->find($queryString);
+        foreach ($hits as $hit) {
+            $this->index->delete($hit->id);
+        }
     }
 
     private function updateApunteIndex($apunte)

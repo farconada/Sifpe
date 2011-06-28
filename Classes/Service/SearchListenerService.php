@@ -11,7 +11,7 @@ class SearchListenerService implements DoctrineEventListenerInterface
     protected $index;
 
     /**
-     * @var \F3\Sifpe\Service\LuceneIndexedSearch
+     * @var \F3\Sifpe\Service\LuceneIndexedSearchService
      * @inject
      */
     protected $indexManager;
