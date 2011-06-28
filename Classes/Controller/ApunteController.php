@@ -14,8 +14,15 @@ class ApunteController extends AbstractController
 {
     /**
      * @var \F3\Sifpe\Service\DoctrineEventListenerInterface
+     * @inject
      */
     protected $doctrineEventListener;
+
+    /**
+     * @var \F3\Sifpe\Service\IndexedSearchInterface
+     * @inject
+     */
+    protected $indexManager;
 
     protected function initializeAction()
     {
@@ -24,7 +31,7 @@ class ApunteController extends AbstractController
         $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
         $entityManager = $entityManagerFactory->create();
         $entityManager->getEventManager()->addEventListener(
-            array(\Doctrine\ORM\Events::preUpdate, \Doctrine\ORM\Events::preRemove), $this->doctrineEventListener
+            array(\Doctrine\ORM\Events::postUpdate, \Doctrine\ORM\Events::postPersist, \Doctrine\ORM\Events::preRemove), $this->doctrineEventListener
         );
         $this->persistenceManager->injectEntityManager($entityManager);
 

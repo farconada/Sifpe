@@ -1,60 +1,40 @@
 <?php
 declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\Service;
-require_once 'Zend/Search/Lucene.php';
-require_once 'Zend/Search/Lucene/Field.php';
-require_once 'Zend/Search/Lucene/Document.php';
-require_once 'Zend/Search/Lucene/Exception.php';
 
 /**
- * @scope singleton
+ * @scope prototype
  */
 class SearchListenerService implements DoctrineEventListenerInterface
 {
-    protected $settings;
 
     protected $index;
 
     /**
-     * @param array $settings
-     * @return void
+     * @var \F3\Sifpe\Service\LuceneIndexedSearch
+     * @inject
      */
-    public function injectSettings(array $settings)
-    {
-        $this->settings = $settings;
-    }
+    protected $indexManager;
 
-    public function initializeObject()
-    {
-        if (!isset($this->settings['luceneDir']) || !is_readable($this->settings['luceneDir'])) {
-            throw new \F3\FLOW3\Error\Exception('Falta la configuracion del directorio de Lucene o el directorio no se puede leer', 1309201437);
-        }
-        try {
-            $this->index = Zend_Search_Lucene::open($this->settings['luceneDir']);
-        } catch (Zend_Search_Lucene_Exception $ex) {
-            $this->index = Zend_Search_Lucene::create($this->settings['luceneDir']);
-        }
 
-    }
-
-    public function preUpdate(\Doctrine\ORM\Event\LifecycleEventArgs $args)
+    public function postPersist(\Doctrine\ORM\Event\LifecycleEventArgs $args)
     {
         if ($args->getEntity() instanceof \F3\Sifpe\Domain\Model\Apunte) {
             $apunte = $args->getEntity();
-            
-            $this->deleteApunteIndex($apunte);
-            
-            $doc = new Zend_Search_Lucene_Document();
-            $doc->addField(Zend_Search_Lucene_Field::Keyword('id', $apunte->getId()));
-            $doc->addField(Zend_Search_Lucene_Field::Keyword('class', get_class($apunte)));
-            $doc->addField(Zend_Search_Lucene_Field::Text('empresa', $apunte->getEmpresa()->getName()));
-            $doc->addField(Zend_Search_Lucene_Field::Text('cuenta', $apunte->getCuenta()->getName()));
-            $doc->addField(Zend_Search_Lucene_Field::UnStored('notas', $apunte->getNotas()));
-            $doc->addField(Zend_Search_Lucene_Field::UnIndexed('cantidad', $apunte->getCantidad()));
-            $doc->addField(Zend_Search_Lucene_Field::UnIndexed('fecha', $apunte->getFecha()->format('Ymd')));
-            $this->index->addDocument($doc);
+
+            $this->updateApunteIndex($apunte);
         }
     }
+
+    public function postUpdate(\Doctrine\ORM\Event\LifecycleEventArgs $args)
+    {
+        if ($args->getEntity() instanceof \F3\Sifpe\Domain\Model\Apunte) {
+            $apunte = $args->getEntity();
+
+            $this->updateApunteIndex($apunte);
+        }
+    }
+
 
     public function preRemove(\Doctrine\ORM\Event\LifecycleEventArgs $args)
     {
@@ -65,11 +45,4 @@ class SearchListenerService implements DoctrineEventListenerInterface
         }
     }
 
-    private function deleteApunteIndex(\F3\Sifpe\Domain\Model\Apunte $apunte)
-    {
-        $hits = $this->index->find('id:' . $apunte->getId() . ' AND class:' . get_class($apunte));
-        foreach ($hits as $hit) {
-            $this->index->delete($hit->id);
-        }
-    }
 }
