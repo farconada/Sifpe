@@ -1,4 +1,4 @@
-F3\Sifpe\Controller\ApunteController:
+F3\Sifpe\Controller\AbstractController:
   properties:
     doctrineEventListener:
       object: F3\Sifpe\Service\SearchListenerService

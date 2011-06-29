@@ -13,6 +13,31 @@ namespace F3\Sifpe\Controller;
 class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 {
     /**
+     * @var \F3\Sifpe\Service\DoctrineEventListenerInterface
+     * @inject
+     */
+    protected $doctrineEventListener;
+
+    /**
+     * @var \F3\Sifpe\Service\IndexSearchInterface
+     * @inject
+     */
+    protected $indexManager;
+
+    protected function initializeAction()
+    {
+        parent::initializeAction();
+
+        $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
+        $entityManager = $entityManagerFactory->create();
+        $entityManager->getEventManager()->addEventListener(
+            array(\Doctrine\ORM\Events::postUpdate, \Doctrine\ORM\Events::postPersist, \Doctrine\ORM\Events::preRemove), $this->doctrineEventListener
+        );
+        $this->persistenceManager->injectEntityManager($entityManager);
+
+    }
+
+    /**
      * Repositorio de objetos de entidad gestionados por esta clase
      *
      * @var \F3\FLOW3\Persistence\Repository
