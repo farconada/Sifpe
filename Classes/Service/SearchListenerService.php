@@ -22,7 +22,7 @@ class SearchListenerService implements DoctrineEventListenerInterface
         if ($args->getEntity() instanceof \F3\Sifpe\Domain\Model\Apunte) {
             $apunte = $args->getEntity();
 
-            $this->updateApunteIndex($apunte);
+            $this->indexManager->updateApunteIndex($apunte);
         }
     }
 
@@ -31,7 +31,7 @@ class SearchListenerService implements DoctrineEventListenerInterface
         if ($args->getEntity() instanceof \F3\Sifpe\Domain\Model\Apunte) {
             $apunte = $args->getEntity();
 
-            $this->updateApunteIndex($apunte);
+            $this->indexManager->updateApunteIndex($apunte);
         }
     }
 
@@ -41,7 +41,7 @@ class SearchListenerService implements DoctrineEventListenerInterface
         if ($args->getEntity() instanceof \F3\Sifpe\Domain\Model\Apunte) {
             $apunte = $args->getEntity();
             
-            $this->deleteApunteIndex($apunte);
+            $this->indexManager->deleteApunteIndex($apunte);
         }
     }
 

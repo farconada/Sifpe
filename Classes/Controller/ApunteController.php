@@ -12,13 +12,6 @@ namespace F3\Sifpe\Controller;
  */
 class ApunteController extends AbstractController
 {
-    /**
-     * @param String $queryString
-     * @return void
-     */
-    public function searchAction($queryString){
-        $hits = $this->indexManager->find($queryString.' AND class:');
-    }
 
     /**
      * indexAction

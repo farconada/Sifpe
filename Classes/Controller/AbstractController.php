@@ -189,4 +189,22 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
      * @signal
      */
     protected function emitRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {}
+
+    /**
+     * @param string $queryString
+     * @return void
+     */
+    public function searchAction($queryString){
+        $hits = $this->indexManager->find($queryString.' AND class:'.str_replace('\\','\\\\',$this->entityRepository->getEntityClassName()));
+        $entityItems = array();
+
+        foreach($hits as $hit) {
+            $entityItems[] = $this->entityRepository->findByIdentifier($hit->objId);
+        }
+        $output = array();
+        $output['data'] = $entityItems;
+        $output['total'] = count($entityItems);
+
+        $this->view->assign('value',$output);
+    }
 }

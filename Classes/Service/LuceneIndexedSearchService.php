@@ -34,17 +34,15 @@ class LuceneIndexedSearchService implements IndexSearchInterface{
     public function find($queryString)
     {
         $hits = $this->index->find($queryString);
-        foreach ($hits as $hit) {
-            $this->index->delete($hit->id);
-        }
+        return $hits;
     }
 
-    private function updateApunteIndex($apunte)
+    public function updateApunteIndex($apunte)
     {
         $this->deleteApunteIndex($apunte);
 
         $doc = new \Zend_Search_Lucene_Document();
-        $doc->addField(\Zend_Search_Lucene_Field::Keyword('id', $apunte->getId()));
+        $doc->addField(\Zend_Search_Lucene_Field::Keyword('objId', $apunte->getId()));
         $doc->addField(\Zend_Search_Lucene_Field::Keyword('class', get_class($apunte)));
         $doc->addField(\Zend_Search_Lucene_Field::Text('empresa', $apunte->getEmpresa()->getName()));
         $doc->addField(\Zend_Search_Lucene_Field::Text('cuenta', $apunte->getCuenta()->getName()));
@@ -54,7 +52,7 @@ class LuceneIndexedSearchService implements IndexSearchInterface{
         $this->index->addDocument($doc);
     }
 
-    private function deleteApunteIndex(\F3\Sifpe\Domain\Model\Apunte $apunte)
+    public function deleteApunteIndex(\F3\Sifpe\Domain\Model\Apunte $apunte)
     {
         $hits = $this->index->find('id:' . $apunte->getId() . ' AND class:' . str_replace('\\','\\\\',get_class($apunte)));
         foreach ($hits as $hit) {
