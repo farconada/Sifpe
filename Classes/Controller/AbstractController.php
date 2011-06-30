@@ -86,7 +86,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         }
         $this->view->assign('value', array(
                                           'success' => FALSE,
-                                          'msg' => $msg
+                                          'message' => $msg
                                      ));
     }
 
@@ -117,7 +117,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
             $this->persistenceManager->persistAll();
             $this->view->assign('value', array(
                                               'success' => TRUE,
-                                              'msg' => 'Borrado'
+                                              'message' => 'Borrado'
                                          ));
 
         } catch (\Exception $ex) {
@@ -143,7 +143,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         $this->persistenceManager->persistAll();
         $this->view->assign('value', array(
                                           'success' => TRUE,
-                                          'msg' => 'Guardado'
+                                          'message' => 'Guardado'
                                      ));
     }
 

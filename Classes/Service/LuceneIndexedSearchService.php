@@ -54,7 +54,7 @@ class LuceneIndexedSearchService implements IndexSearchInterface{
 
     public function deleteApunteIndex(\F3\Sifpe\Domain\Model\Apunte $apunte)
     {
-        $hits = $this->index->find('id:' . $apunte->getId() . ' AND class:' . str_replace('\\','\\\\',get_class($apunte)));
+        $hits = $this->index->find('objId:' . $apunte->getId() . ' AND class:' . str_replace('\\','\\\\',get_class($apunte)));
         foreach ($hits as $hit) {
             $this->index->delete($hit->id);
         }

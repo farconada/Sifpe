@@ -60,10 +60,6 @@ Ext.define('Sifpe.grid.Base', {
     },
     onAddClick: function() {
         this.fireEvent('addclick', this);
-    },
-    onEdit: function(editor, e) {
-        alert('Editado');
-        this.store.sync();
     }
 
 });
