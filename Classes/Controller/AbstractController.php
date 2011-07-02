@@ -199,7 +199,8 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         $entityItems = array();
 
         foreach($hits as $hit) {
-            $entityItems[] = $this->entityRepository->findByIdentifier($hit->objId);
+            $entity = $this->entityRepository->findByIdentifier($hit->objId);
+            $entityItems[] = method_exists($entity,'toArray')? $entity->toArray(): $entity;
         }
         $output = array();
         $output['data'] = $entityItems;

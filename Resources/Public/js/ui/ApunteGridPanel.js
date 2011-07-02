@@ -1,3 +1,51 @@
+Ext.define('Ext.ux.form.SearchField', {
+    extend: 'Ext.form.field.Trigger',
+
+    alias: 'widget.searchfield',
+
+    trigger1Cls: Ext.baseCSSPrefix + 'form-clear-trigger',
+    trigger2Cls: Ext.baseCSSPrefix + 'form-search-trigger',
+
+    url: '',
+    hasSearch : false,
+    paramName : 'query',
+
+    initComponent: function() {
+        this.callParent(arguments);
+        this.url = this.store.getProxy().url;
+
+    },
+
+    afterRender: function() {
+        this.callParent();
+        this.triggerEl.item(0).setDisplayed('none');
+    },
+
+    onTrigger1Click : function() {
+        var me = this;
+        if (me.hasSearch) {
+            me.setValue('');
+            me.hasSearch = false;
+            me.triggerEl.item(0).setDisplayed('none');
+            me.doComponentLayout();
+            var proxy = me.store.getProxy();
+            proxy.url = me.url;
+            me.store.load();
+        }
+    },
+    onTrigger2Click : function() {
+        var me = this;
+        me.hasSearch = true;
+        me.triggerEl.item(0).setDisplayed('block');
+        me.doComponentLayout();
+        var proxy = me.store.getProxy();
+        var searchUrl = me.url.replace(/list$/i,'search')
+        proxy.url = searchUrl + '/?queryString=' + me.getValue();
+        me.store.load();
+
+    }
+});
+
 Ext.define('Sifpe.grid.Apunte', {
     extend: 'Sifpe.grid.Base',
     alias: 'widget.basegrid',
@@ -76,7 +124,16 @@ Ext.define('Sifpe.grid.Apunte', {
             ]
         });
         this.callParent();
-
+        this.addDocked({
+            xtype: 'toolbar',
+            items: {
+                width: 400,
+                fieldLabel: 'Buscar:',
+                labelWidth: 50,
+                xtype: 'searchfield',
+                store: this.store
+            }
+        });
     },
     onAddClick: function() {
         this.fireEvent('addclick', this);
