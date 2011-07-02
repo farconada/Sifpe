@@ -66,9 +66,9 @@ Ext.define('Sifpe.grid.Apunte', {
                         xtype: 'datefield',
                         allowBlank: false,
                         format: 'd-m-Y',
-                        minValue: '01/01/2006',
+                        minValue: '2006-01-01',
                         minText: 'Cannot have a start date before the company existed!',
-                        maxValue: Ext.Date.format(new Date(), 'm/d/Y')
+                        maxValue: Ext.Date.format(new Date(), 'Y-m-d')
                     }
                 },
                 {
