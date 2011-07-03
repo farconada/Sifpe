@@ -8,7 +8,12 @@ namespace F3\Sifpe\Controller;
  * Gestion de Backups
  */
 class UtilController extends \F3\FLOW3\MVC\Controller\ActionController {
- 
+
+    /**
+     * @var /F3/Sifpe/Service/BackupServiceInterface
+     */
+    protected $backupService;
+
     /**
      * indexAction
      * @return void
@@ -31,32 +36,14 @@ class UtilController extends \F3\FLOW3\MVC\Controller\ActionController {
     }
 
     public function doBackupAction(){
-        $this->execBackup();
+        $this->backupService->setDestinationDir($this->settings['backupDir']);
+        $this->backupService->execBackup();
     }
 
     public function slotRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {
-        $this->execBackup();
+        $this->backupService->setDestinationDir($this->settings['backupDir']);
+        $this->backupService->execBackup();
     }
-    
-    private function execBackup() {
-        $configurationManager = $this->objectManager->get('F3\FLOW3\Configuration\ConfigurationManager');
-        $settings = $configurationManager->getConfiguration(\F3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
-        $dbname = $settings['FLOW3']['persistence']['backendOptions']['dbname'];
-        $dbuser = $settings['FLOW3']['persistence']['backendOptions']['user'];
-        $dbpassword = $settings['FLOW3']['persistence']['backendOptions']['password'];
 
-        $date = new \DateTime();
-
-        //Solo es valido para MySQL
-        if ($settings['FLOW3']['persistence']['backendOptions']['driver']  == 'pdo_mysql') {
-            $mysqldumpCmd = '/usr/bin/mysqldump -u'.$dbuser . ' ' . $dbname;
-            if ($dbpassword) {
-                $mysqldumpCmd = $mysqldumpCmd.' -p'.$dbpassword;
-            }
-            $cmd = $mysqldumpCmd . '>'.$this->settings['backupDir'].'backup-'.$date->format('Ymd').'.sql';
-        }
-
-        system('echo "'.$cmd.'"| at now +1min');
-    }
  
 }
