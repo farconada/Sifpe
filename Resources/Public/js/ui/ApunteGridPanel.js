@@ -128,7 +128,7 @@ Ext.define('Sifpe.grid.Apunte', {
             xtype: 'toolbar',
             items: {
                 width: 400,
-                fieldLabel: 'Buscar:',
+                fieldLabel: 'Buscador:',
                 labelWidth: 50,
                 xtype: 'searchfield',
                 store: this.store

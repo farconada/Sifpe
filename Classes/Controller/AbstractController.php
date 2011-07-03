@@ -211,6 +211,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         $output = array();
         $output['data'] = $entityItems;
         $output['total'] = count($entityItems);
+        $output['totalPaginas'] = 1;
 
         $this->view->assign('value',$output);
     }

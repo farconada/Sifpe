@@ -32,7 +32,7 @@ class ApunteController extends AbstractController
     {
         $items = $this->entityRepository->findPorMes($start);
         $output = $this->getOutputArray($items);
-        $output['totalMeses'] = $this->entityRepository->getTotalMesesRegistrados();
+        $output['totalPaginas'] = $this->entityRepository->getTotalMesesRegistrados();
         $this->view->assign('value', $output);
     }
 
