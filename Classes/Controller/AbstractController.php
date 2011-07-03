@@ -195,7 +195,13 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
      * @return void
      */
     public function searchAction($queryString){
-        $hits = $this->indexManager->find($queryString.' AND class:'.str_replace('\\','\\\\',$this->entityRepository->getEntityClassName()));
+        $hits=array();
+        try {
+            $hits = $this->indexManager->find($queryString . ' AND class:' . str_replace('\\', '\\\\', $this->entityRepository->getEntityClassName()));
+        } catch (\Exception $e) {
+            $this->forward('error', NULL, NULL, array('msg' => $e->getMessage()));
+        }
+
         $entityItems = array();
 
         foreach($hits as $hit) {
