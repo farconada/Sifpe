@@ -1,0 +1,32 @@
+http://en.gentoo-wiki.com/wiki/Convert_latin1_to_UTF-8_in_MySQL
+
+Necesita usar la BD en UTF-8
+FLOW3:
+  persistence:
+    backendOptions:
+      driver: 'pdo_mysql'
+      dbname: 'phoenix'   # adjust to your database name
+      user: 'root'        # adjust to your database user
+      password: ''        # adjust to your database password
+      host: '127.0.0.1'   # adjust to your database host
+      path: '127.0.0.1'   # adjust to your database host
+      port: 3306
+    doctrine:
+       # If you have APC, you should consider using it for Production,
+       # also MemcacheCache and XcacheCache exist.
+#      cacheImplementation: 'Doctrine\Common\Cache\ApcCache'
+       # when using MySQL and UTF-8, this should help with connection encoding issues
+      dbal:
+        sessionInitialization: 'SET NAMES utf8 COLLATE utf8_unicode_ci'
+
+
+/*public function listAction()
+    {
+        $items = $this->entityRepository->findAll();
+        $output = $this->getOutputArray($items);
+        foreach ($items as $item) {
+            var_dump($item->getName(). '----'.mb_detect_encoding($item->getName(), "UTF-8, ISO-8859-1, ISO-8859-15", true));
+            echo json_encode(mb_convert_encoding($item->getName(), "UTF-8")) . "\t\n";
+        }
+        $this->view->assign('value', $output);
+    }*/

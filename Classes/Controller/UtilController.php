@@ -15,6 +15,12 @@ class UtilController extends \F3\FLOW3\MVC\Controller\ActionController {
     protected $backupService;
 
     /**
+     * @var \F3\Sifpe\Service\IndexManagerInterface
+     * @inject
+     */
+    protected $indexManager;
+
+    /**
      * indexAction
      * @return void
      */
@@ -33,6 +39,16 @@ class UtilController extends \F3\FLOW3\MVC\Controller\ActionController {
             }
         }
         $this->view->assign('files',$files);
+    }
+
+    /**
+     * @param string $objectModel
+     * @return void
+     */
+    public function indexAllObjectsAction($objectModel){
+        $query = $this->persistenceManager->createQueryForType($objectModel);
+        $objects = $query->execute();
+        $this->indexManager->indexCollection($objects);
     }
 
     public function doBackupAction(){

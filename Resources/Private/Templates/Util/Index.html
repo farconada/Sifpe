@@ -9,6 +9,8 @@
         <f:flashMessages class="flashmessages"/>
         <h2>Utilidades</h2>
         <f:link.action action="doBackup" controller="Util">Hacer backup ahora</f:link.action>
+        <f:link.action action="indexAllObjects" controller="Util" arguments="{objectModel:'\F3\Sifpe\Domain\Model\Gasto'}">Indexar Gastos</f:link.action>
+        <f:link.action action="indexAllObjects" controller="Util" arguments="{objectModel:'\F3\Sifpe\Domain\Model\Ingreso'}">Indexar Ingresos</f:link.action>
         <div id="backups-list">
             <ul>
                 <f:for each="{files}" as="file">
