@@ -88,13 +88,13 @@ class LuceneIndexedSearchService implements IndexSearchInterface, IndexManagerIn
 
     public function addApunteIndex($apunte){
         $doc = new \Zend_Search_Lucene_Document();
-        $doc->addField(\Zend_Search_Lucene_Field::Keyword('objId', $apunte->getId()));
+        $doc->addField(\Zend_Search_Lucene_Field::Keyword('objId', $apunte->getId(),'utf-8'));
         $doc->addField(\Zend_Search_Lucene_Field::Keyword('class', get_class($apunte),'utf-8'));
         $doc->addField(\Zend_Search_Lucene_Field::Text('empresa', $apunte->getEmpresa()->getName(),'utf-8'));
         $doc->addField(\Zend_Search_Lucene_Field::Text('cuenta', $apunte->getCuenta()->getName(),'utf-8'));
         $doc->addField(\Zend_Search_Lucene_Field::UnStored('notas', $apunte->getNotas(),'utf-8'));
-        $doc->addField(\Zend_Search_Lucene_Field::UnIndexed('cantidad', $apunte->getCantidad()));
-        $doc->addField(\Zend_Search_Lucene_Field::UnIndexed('fecha', $apunte->getFecha()->format('Ymd')));
+        $doc->addField(\Zend_Search_Lucene_Field::UnStored('cantidad', $apunte->getCantidad(),'utf-8'));
+        $doc->addField(\Zend_Search_Lucene_Field::UnStored('fecha', $apunte->getFecha()->format('Ymd'),'utf-8'));
         $this->index->addDocument($doc);
         $this->index->commit();
     }
