@@ -206,8 +206,6 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 
         foreach($hits as $hit) {
             $entity = $this->entityRepository->findByIdentifier($hit->objId);
-            $encoded = json_encode($entity->getNotas()) ? 'OK':'FAIL';
-            echo $entity->getNotas().json_encode($entity->getNotas())."\t\t\t---------- $encoded\n";
             $entityItems[] = method_exists($entity,'toArray')? $entity->toArray(): $entity;
         }
         $output = array();

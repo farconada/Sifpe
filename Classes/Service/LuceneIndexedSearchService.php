@@ -62,7 +62,7 @@ class LuceneIndexedSearchService implements IndexSearchInterface, IndexManagerIn
 
     public function initializeObject()
     {
-        \Zend_Search_Lucene_Analysis_Analyzer::setDefault(new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8_CaseInsensitive());
+        \Zend_Search_Lucene_Analysis_Analyzer::setDefault(new \Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num_CaseInsensitive());
         if (!isset($this->settings['luceneDir']) || !is_readable($this->settings['luceneDir'])) {
             throw new \F3\FLOW3\Error\Exception('Falta la configuracion del directorio de Lucene o el directorio no se puede leer', 1309201437);
         }
@@ -96,6 +96,7 @@ class LuceneIndexedSearchService implements IndexSearchInterface, IndexManagerIn
         $doc->addField(\Zend_Search_Lucene_Field::UnIndexed('cantidad', $apunte->getCantidad()));
         $doc->addField(\Zend_Search_Lucene_Field::UnIndexed('fecha', $apunte->getFecha()->format('Ymd')));
         $this->index->addDocument($doc);
+        $this->index->commit();
     }
 
     public function deleteApunteIndex(\F3\Sifpe\Domain\Model\Apunte $apunte)
@@ -105,6 +106,7 @@ class LuceneIndexedSearchService implements IndexSearchInterface, IndexManagerIn
         foreach ($hits as $hit) {
             $this->index->delete($hit->id);
         }
+        $this->index->commit();
     }
 
 
