@@ -3,7 +3,7 @@ declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\Controller;
 
 /**
- * Clase abstracta con todos los metodos comunes
+ * Controlador abstracto con todos los metodos comunes
  *
  * @abstract
  * @author Fernando Arconada
@@ -12,6 +12,51 @@ namespace F3\Sifpe\Controller;
  */
 class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 {
+    /**
+     * Variable que tiene un objeto que implementa una interface de clase que sirve para escuchar eventos de Doctrine
+     *
+     * Mediante DI se inserta un una clase concreta en Objects.yaml
+     * Usado para actualizar los indices de lucene cuando se cambia un objeto
+     *
+     * @var \F3\Sifpe\Service\DoctrineEventListenerInterface
+     * @inject
+     */
+    protected $doctrineEventListener;
+
+    /**
+     * Variable que tiene un objeto que implementa una interface de clase que sirve para buscar objetos indexados
+     *
+     * Mediante DI se inserta un una clase concreta en Objects.yaml
+     * Usado para buscar objetos en el indice
+     * Actualmente Lucene, pero podria ser elastic-search, Solr....
+     *
+     * @var \F3\Sifpe\Service\IndexSearchInterface
+     * @inject
+     */
+    protected $indexSearcher;
+
+
+    /**
+     * Inicializacion previa a cualquier Action
+     *
+     * Esta inicializion se usa para insertar el escuchador de eventos en la capa de persistencia
+     * Actualmente solo sirve para Doctrine
+     *
+     * @return void
+     */
+    protected function initializeAction()
+    {
+        parent::initializeAction();
+
+        $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
+        $entityManager = $entityManagerFactory->create();
+        $entityManager->getEventManager()->addEventListener(
+            array(\Doctrine\ORM\Events::postUpdate, \Doctrine\ORM\Events::postPersist, \Doctrine\ORM\Events::preRemove), $this->doctrineEventListener
+        );
+        $this->persistenceManager->injectEntityManager($entityManager);
+
+    }
+
     /**
      * Repositorio de objetos de entidad gestionados por esta clase
      *
@@ -61,7 +106,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         }
         $this->view->assign('value', array(
                                           'success' => FALSE,
-                                          'msg' => $msg
+                                          'message' => $msg
                                      ));
     }
 
@@ -92,7 +137,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
             $this->persistenceManager->persistAll();
             $this->view->assign('value', array(
                                               'success' => TRUE,
-                                              'msg' => 'Borrado'
+                                              'message' => 'Borrado'
                                          ));
 
         } catch (\Exception $ex) {
@@ -118,7 +163,7 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
         $this->persistenceManager->persistAll();
         $this->view->assign('value', array(
                                           'success' => TRUE,
-                                          'msg' => 'Guardado'
+                                          'message' => 'Guardado'
                                      ));
     }
 
@@ -164,4 +209,35 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
      * @signal
      */
     protected function emitRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {}
+
+    /**
+     * Accion para buscar objetos indexados
+     *
+     * Esta clase solo busca objetos manejados por la propiedad $this->entityRepository
+     * El indice tiene que tiene un campo llamado "class" que permita filtrar por la clase del objeto
+     *
+     * @param string $queryString
+     * @return void
+     */
+    public function searchAction($queryString){
+        $hits=array();
+        try {
+            $hits = $this->indexSearcher->find($queryString . ' AND class:' . str_replace('\\', '\\\\', $this->entityRepository->getEntityClassName()));
+        } catch (\Exception $e) {
+            $this->forward('error', NULL, NULL, array('msg' => $e->getMessage()));
+        }
+
+        $entityItems = array();
+
+        foreach($hits as $hit) {
+            $entity = $this->entityRepository->findByIdentifier($hit->objId);
+            $entityItems[] = method_exists($entity,'toArray')? $entity->toArray(): $entity;
+        }
+        $output = array();
+        $output['data'] = $entityItems;
+        $output['total'] = count($entityItems);
+        $output['totalPaginas'] = 1;
+
+        $this->view->assign('value',$output);
+    }
 }

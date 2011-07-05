@@ -11,7 +11,7 @@ Ext.create('Ext.data.Store', {
         reader: {
             type: 'json',
             root: 'data',
-            totalProperty: 'totalMeses'
+            totalProperty: 'totalPaginas'
         },
         writer: {
             type: 'json',

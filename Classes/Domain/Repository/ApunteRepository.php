@@ -73,7 +73,7 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
 
         $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
         $entityManager = $entityManagerFactory->create();
-        $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad, c.name AS cuenta FROM ' . $this->objectType . ' g JOIN g.cuenta c WHERE g.fecha <=:fechaFinal AND g.fecha >=:fechaInicial GROUP BY c.id');
+        $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad, c.name AS cuenta FROM ' . $this->getEntityClassName() . ' g JOIN g.cuenta c WHERE g.fecha <=:fechaFinal AND g.fecha >=:fechaInicial GROUP BY c.id');
 
         return $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
     }
@@ -96,7 +96,7 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
             $fechaFinal->add(new \DateInterval('P0Y1M'));
             $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
             $entityManager = $entityManagerFactory->create();
-            $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM ' . $this->objectType . ' g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
+            $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM ' . $this->getEntityClassName() . ' g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
 
             $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
             $result[$i]['cantidad'] = $res[0]['cantidad']+0;

@@ -1,0 +1,14 @@
+F3\Sifpe\Controller\AbstractController:
+  properties:
+    doctrineEventListener:
+      object: F3\Sifpe\Service\SearchListenerService
+    indexSearcher:
+      object: F3\Sifpe\Service\LuceneIndexedSearchService
+
+F3\Sifpe\Controller\UtilController:
+  properties:
+    backupService:
+      object: F3\Sifpe\Service\MysqlBackupService
+    indexManager:
+      object: F3\Sifpe\Service\LuceneIndexedSearchService
+

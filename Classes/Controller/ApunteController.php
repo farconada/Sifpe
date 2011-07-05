@@ -32,12 +32,16 @@ class ApunteController extends AbstractController
     {
         $items = $this->entityRepository->findPorMes($start);
         $output = $this->getOutputArray($items);
-        $output['totalMeses'] = $this->entityRepository->getTotalMesesRegistrados();
+        $output['totalPaginas'] = $this->entityRepository->getTotalMesesRegistrados();
         $this->view->assign('value', $output);
     }
 
     /**
-     * @param int $start
+     * Lista un resumen de los apuntes agrupados por cuenta en un solo mes y el mes anterior
+     *
+     * El mes cero es el mes actual y se le puede indicar cuantos meses atras para ver el listado, pero solo de un mes
+     *
+     * @param int $start numero de meses atras desde la fecha actual
      * @return void
      */
     public function listResumenPorCuentaAction($start = 0){
@@ -65,7 +69,11 @@ class ApunteController extends AbstractController
     }
 
     /**
-     * @param int $start
+     * Lista un resumen de los apuntes agrupados por mes en un año y el año anterior
+     *
+     * El año cero es el año año actual y se le puede indicar para cuantos años atras calcularlo
+     *
+     * @param int $start numero de años atras desde la fecha actual
      * @return void
      */
     public function listResumenAnualAction($start = 0) {
@@ -87,7 +95,11 @@ class ApunteController extends AbstractController
     }
 
     /**
-     * @param int $start
+     * Lista para un mes el total de gastos e ingresos
+     *
+     * El mes cero es el mes actual y se le puede indicar cuantos meses atras para ver el listado, pero solo de un mes
+     *
+     * @param int $start numero de meses atras desde la fecha actual
      * @return void
      */
     public function listResumenMesAction($start = 0){

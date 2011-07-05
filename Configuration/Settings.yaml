@@ -1,0 +1,3 @@
+Sifpe:
+  backupDir: '/tmp/sifpe-backups/'
+  luceneDir: '/tmp/sifpe-lucene/'

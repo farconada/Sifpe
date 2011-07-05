@@ -10,6 +10,7 @@ namespace F3\Sifpe\Domain\Model;
 /**
  * @scope prototype
  * @entity
+ * @HasLifecycleCallbacks
  * @Table(name="ingreso")
  */
 class Ingreso extends Apunte implements \F3\Sifpe\Domain\EntityInterface {
