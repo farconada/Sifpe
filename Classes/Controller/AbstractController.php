@@ -3,7 +3,7 @@ declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\Controller;
 
 /**
- * Clase abstracta con todos los metodos comunes
+ * Controlador abstracto con todos los metodos comunes
  *
  * @abstract
  * @author Fernando Arconada
@@ -13,17 +13,37 @@ namespace F3\Sifpe\Controller;
 class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 {
     /**
+     * Variable que tiene un objeto que implementa una interface de clase que sirve para escuchar eventos de Doctrine
+     *
+     * Mediante DI se inserta un una clase concreta en Objects.yaml
+     * Usado para actualizar los indices de lucene cuando se cambia un objeto
+     *
      * @var \F3\Sifpe\Service\DoctrineEventListenerInterface
      * @inject
      */
     protected $doctrineEventListener;
 
     /**
+     * Variable que tiene un objeto que implementa una interface de clase que sirve para buscar objetos indexados
+     *
+     * Mediante DI se inserta un una clase concreta en Objects.yaml
+     * Usado para buscar objetos en el indice
+     * Actualmente Lucene, pero podria ser elastic-search, Solr....
+     *
      * @var \F3\Sifpe\Service\IndexSearchInterface
      * @inject
      */
     protected $indexSearcher;
 
+
+    /**
+     * Inicializacion previa a cualquier Action
+     *
+     * Esta inicializion se usa para insertar el escuchador de eventos en la capa de persistencia
+     * Actualmente solo sirve para Doctrine
+     *
+     * @return void
+     */
     protected function initializeAction()
     {
         parent::initializeAction();
@@ -191,6 +211,11 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
     protected function emitRecordPreDeleted(\F3\Sifpe\Domain\EntityInterface $entity) {}
 
     /**
+     * Accion para buscar objetos indexados
+     *
+     * Esta clase solo busca objetos manejados por la propiedad $this->entityRepository
+     * El indice tiene que tiene un campo llamado "class" que permita filtrar por la clase del objeto
+     *
      * @param string $queryString
      * @return void
      */
