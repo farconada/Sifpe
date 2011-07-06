@@ -30,6 +30,7 @@ Ext.create('Ext.data.Store', {
             type: 'ajax',
             encode: true,
             url: baseUrl + 'cuenta/list',
+            noCache: false,
             reader: {
                 type: 'json',
                 root: 'data'

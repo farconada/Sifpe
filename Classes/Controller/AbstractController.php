@@ -240,4 +240,11 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
 
         $this->view->assign('value',$output);
     }
+
+    protected function setCacheHeaders(){
+        $expirationDate = new \DateTime('+1 month');
+        $this->response->setHeader('Expires',$expirationDate->format('D, d M Y H:i:s \G\M\T'));
+        $this->response->setHeader('Cache-Control','max-age=2629000');
+        $this->response->setHeader('Pragma','cache');
+    }
 }

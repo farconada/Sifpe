@@ -32,5 +32,12 @@ class CuentaController extends AbstractController {
         parent::initializeAction();
     }
 
+    public function listAction()
+    {
+        parent::listAction();
+        $this->setCacheHeaders();
+    }
+
+
 }
  

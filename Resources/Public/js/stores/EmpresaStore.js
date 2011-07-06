@@ -23,6 +23,7 @@ Ext.create('Ext.data.Store', {
         proxy: {
             type: 'ajax',
             encode: true,
+            noCache: false,
             url: baseUrl + 'empresa/list',
             reader: {
                 type: 'json',

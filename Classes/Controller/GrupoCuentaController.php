@@ -32,5 +32,10 @@ class GrupoCuentaController extends AbstractController {
         parent::initializeAction();
     }
 
+    public function listAction()
+    {
+        parent::listAction();
+        $this->setCacheHeaders();
+    }
 }
  
