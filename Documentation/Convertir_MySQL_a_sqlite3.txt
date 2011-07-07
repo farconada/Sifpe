@@ -1,0 +1,2 @@
+mysqldump -u root -p --compatible=ansi --skip-opt flow3 > dumpfile
+./mysql2sqlite.sh dumpfile

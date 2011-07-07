@@ -1,0 +1,108 @@
+﻿<f:layout name="Master"/>
+<f:section name="header">
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ApunteModel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/GastoStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/CuentaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/EmpresaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ResumenCuentaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ResumenMesStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/ResumenAnioStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ApunteGridPanel.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenCuentaChart.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenMesChart.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/ResumenAnioChart.js')}"></script>
+</f:section>
+
+<f:section name="mainbox">
+    <f:flashMessages class="flashmessages"/>
+    <![CDATA[
+    <script type="text/javascript">
+        Ext.onReady(function() {
+            Ext.QuickTips.init();
+
+            var gridPanel = Ext.create('Sifpe.grid.Apunte', {
+                title: 'Gestion de gastos',
+                store: Ext.data.StoreManager.lookup('gastoStore'),
+                renderTo: Ext.get('my-app')
+            });
+
+            var chartsMesPanel = Ext.create('Ext.container.Container', {
+                width: '100%',
+                height: 200,
+                hidden: false,
+                renderTo: Ext.get('charts-mes'),
+                layout: 'hbox',
+                items: [
+                    {
+                        id: 'resumencuenta',
+                        xtype: 'resumencuentachart',
+                        width: '100%',
+                        height: 200,
+                        flex: 5
+                    },
+                    {
+                        id: 'resumenmes',
+                        xtype: 'resumenmespanel',
+                        width: '100%',
+                        height: 200,
+                        flex: 1
+                    }
+                ]
+            });
+
+            var chartsAnioPanel = Ext.create('Ext.container.Container', {
+                width: '100%',
+                height: 200,
+                hidden: false,
+                renderTo: Ext.get('charts-anio'),
+                layout: 'fit',
+                items: [
+                    {
+                        id: 'resumenanio',
+                        xtype: 'resumenaniochart',
+                        store: Ext.data.StoreManager.lookup('resumenGastosAnioStore'),
+                        width: '100%',
+                        height: 200
+                    }
+                ]
+            });
+
+            var cuentaStore = Ext.data.StoreManager.lookup('cuentaStore');
+            cuentaStore.on('load', function() {
+                gridPanel.getView().refresh()
+            });
+            var empresaStore = Ext.data.StoreManager.lookup('empresaStore');
+            empresaStore.on('load', function() {
+                gridPanel.getView().refresh()
+            });
+
+            var paging = gridPanel.getComponent('gridPaging');
+            paging.on('change', function(paging, pageData, options) {
+                var resumenCuentaStore = Ext.data.StoreManager.lookup('resumenGastosCuentaStore');
+                resumenCuentaStore.loadPage(pageData.currentPage);
+
+                var resumenMesStore = Ext.data.StoreManager.lookup('resumenMesStore');
+                resumenMesStore.loadPage(pageData.currentPage);
+
+                var today = new Date();
+                var aniosAtras = 0;
+                var gastoStore = Ext.data.StoreManager.lookup('gastoStore');
+                if(gastoStore.data.items[0]){
+                    aniosAtras = today.getFullYear() - gastoStore.data.items[0].data.fecha.getFullYear();
+                }
+                var resumenAnioStore = Ext.data.StoreManager.lookup('resumenGastosAnioStore');
+                resumenAnioStore.loadPage(aniosAtras+1);
+                
+                gridPanel.setTitle('Gestion de Gastos. Este mes seleccionado (' + gastoStore.sum('cantidad')+'eur)');
+
+            });
+
+
+        });
+
+    </script>
+    ]]>
+    <div id="charts-mes"></div>
+    <div id="charts-anio"></div>
+</f:section>

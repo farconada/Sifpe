@@ -1,22 +1,60 @@
 {namespace ext=F3\ExtJS\ViewHelpers}
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<f:base />
-        <ext:include/>
-		<title>{blog.title}</title>
-		<link rel="stylesheet" href="{f:uri.resource(path: 'css/Sifpe.css')}" type="text/css" media="all" />
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <f:base/>
+    <link href="http://fonts.googleapis.com/css?family=Nova+Script:regular" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/stylesheets/sifpe.css')}" type="text/css" media="all"/>
+    <!-- BEGIN ExtJs Framework-->
+    <link rel="stylesheet" type="text/css" href="{f:uri.resource(path: 'js/extjs/resources/css/ext-all.css')}"/>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/extjs/ext-all.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/extjs/ext-lang-es.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/Util.js')}"></script>
+    <!-- END ExtJs Framework-->
 
-	</head>
-	<body>
-            <h1>SIFPE v4</h1>
-			<div id="mainbox">
-                <f:render section="mainbox" />
-            </div>
+    <title>SIFPE v4</title>
+    <script type="text/javascript">
+        baseUrl = '/index.php/'
+    </script>
+    <f:render section="header"/>
 
-	</body>
+
+    <link href="http://fonts.googleapis.com/css?family=Nova+Script:regular" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="container">
+    <header>
+        <h1>SIFPE v4</h1>
+        <nav>
+            <ul class="menu">
+                <li class="first">
+                    <f:link.action action="index" controller="Gasto">Gastos</f:link.action>
+                </li>
+                <li>
+                    <f:link.action action="index" controller="Ingreso">Ingresos</f:link.action>
+                </li>
+                <li>
+                    <f:link.action action="index" controller="Cuenta">Cuentas</f:link.action>
+                </li>
+                <li>
+                    <f:link.action action="index" controller="GrupoCuenta">Grupos</f:link.action>
+                </li>
+                <li class="last">
+                    <f:link.action action="index" controller="Empresa">Empresas</f:link.action>
+                </li>
+                <li class="last">
+                    <f:link.action action="index" controller="Util">Utilidades</f:link.action>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div id="mainbox">
+            <div id="my-app"></div>
+            <f:render section="mainbox"/>
+
+        </div>
+    </section>
+</div>
+</body>
 </html>

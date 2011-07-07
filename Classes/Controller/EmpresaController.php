@@ -2,55 +2,44 @@
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Controller;
 
-class EmpresaController extends \F3\FLOW3\MVC\Controller\ActionController {
+/**
+ * Clase responsable de la gestion de Empresas
+ *
+ * @author Fernando Arconada
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
+ */
+class EmpresaController extends AbstractController {
 
     /**
 	 * @inject
 	 * @var \F3\Sifpe\Domain\Repository\EmpresaRepository
 	 */
-	protected $empresaRepository;
+	protected $entityRepository;
 
+    /**
+     * Establece los TypeConverter necesarios para que los parametros pasados como JSON sean convertidos a
+     * objetos de tipo Domain\Model\Empresa
+     *
+     * @return void
+     */
     public function initializeAction() {
-        if (isset($this->arguments['empresa'])) {
-            $this->arguments->getArgument('empresa')
+        if (isset($this->arguments['entity'])) {
+            $this->arguments->getArgument('entity')
                     ->getPropertyMappingConfiguration()
-                    ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter());
+                    ->setTypeConverter(new \F3\Sifpe\TypeConverters\JsonToEntityConverter('\F3\Sifpe\Domain\Model\Empresa'));
         }
+        parent::initializeAction();
     }
 
-	/**
-	 * List action for this controller.
-	 *
-	 * @return string
-	 */
-	public function indexAction() {
-            $this->view->assign('empresas',$this->empresaRepository->findAll());
-	}
-
+    /**
+     * Listado de Empresas, cache por defecto de 60 dias
+     *
+     * @return void
+     */
     public function listAction() {
-            $empresas = $this->empresaRepository->findAll();
-            $this->view->assign('total',$empresas->count());
-            $this->view->assign('data',$empresas);
-	}
-
-    /**
-     * @param \F3\Sifpe\Domain\Model\Empresa $empresa
-     * @return void
-     */
-    public function saveAction(\F3\Sifpe\Domain\Model\Empresa $empresa) {
-        if($empresa->getId() != '') {
-            $this->empresaRepository->update($empresa);
-        } else {
-            $this->empresaRepository->add($empresa);
-        }
-	}
-
-    /**
-     * @param \F3\Sifpe\Domain\Model\Empresa $empresa
-     * @return void
-     */
-    public function deleteAction(\F3\Sifpe\Domain\Model\Empresa $empresa) {
-            $this->view->assign('empresas',$this->empresaRepository->findAll());
-	}
+        parent::listAction();
+        $this->setCacheHeaders(365);
+    }
 }
  

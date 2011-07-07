@@ -1,0 +1,69 @@
+﻿﻿
+<f:layout name="Master"/>
+<f:section name="header">
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/GrupoCuentaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/CuentaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
+</f:section>
+
+<f:section name="mainbox">
+    <f:flashMessages class="flashmessages"/>
+    <![CDATA[
+    <script type="text/javascript">
+        Ext.onReady(function() {
+            Ext.QuickTips.init();
+
+
+
+            var gridPanel = Ext.create('Sifpe.grid.Base', {
+                title: 'Gestion de cuentas',
+                store: Ext.data.StoreManager.lookup('cuentaStore'),
+                renderTo: Ext.get('my-app'),
+                columns: [
+                    {
+                        header: 'nombre',
+                        dataIndex: 'name',
+                        flex: true,
+                        editor: {
+                            type: 'textfield'
+                        }
+                    },
+                    {
+                        header: 'grupo',
+                        dataIndex: 'grupo',
+                        flex: true,
+                        renderer: function(value){
+                            var grupoStore = Ext.data.StoreManager.lookup('grupoCuentaStore');
+                            var recordGrupo = grupoStore.getById(value);
+                            if (recordGrupo) {
+                                return recordGrupo.data.name;
+                            } else {
+                                return value;
+                            }
+                        },
+                        editor: {
+                            xtype: 'combo',
+                            editable: false,
+                            store:  Ext.data.StoreManager.lookup('grupoCuentaStore'),
+                            queryMode: 'local',
+                            displayField: 'name',
+                            valueField: 'id'
+                        }
+                    }
+                ],
+                listeners: {
+                    addclick: function() {
+                        edit = this.editing;
+                        edit.cancelEdit();
+                        this.store.insert(0, new Cuenta());
+                        edit.startEdit(0,0);
+                    }
+                }
+            });
+
+            grupoStore = Ext.data.StoreManager.lookup('grupoCuentaStore');
+            grupoStore.on('load',function(){gridPanel.getView().refresh()});
+        });
+    </script>
+    ]]>
+</f:section>

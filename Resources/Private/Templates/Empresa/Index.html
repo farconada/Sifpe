@@ -1,28 +1,41 @@
 ﻿﻿
 <f:layout name="Master"/>
+<f:section name="header">
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/stores/EmpresaStore.js')}"></script>
+    <script type="text/javascript" src="{f:uri.resource(path: 'js/ui/BasePanel.js')}"></script>
+</f:section>
 
 <f:section name="mainbox">
     <f:flashMessages class="flashmessages"/>
-    <h2>Empresas</h2>
-    <ul>
-        <f:for each="{empresas}" as="empresa">
-            <li><f:link.action action="save" arguments="{empresa: empresa}">{empresa.name}</f:link.action></li>
-        </f:for>
-    </ul>
-     <![CDATA[
+    <![CDATA[
     <script type="text/javascript">
-        Ext.onReady(function(){
-            function Empresa(id, name){
-                this.id = id;
-                this.name = name;
-            };
-            Ext.Ajax.request({
-                url:    'index.php/empresa/save',
-                method: 'POST',
-                params: {
-                    'empresa':Ext.util.JSON.encode(new Empresa('7','algo-' + Math.random().toString()))
+        Ext.onReady(function() {
+            Ext.QuickTips.init();
+
+            var gridPanel = Ext.create('Sifpe.grid.Base', {
+                title: 'Gestion de empresas',
+                store: Ext.data.StoreManager.lookup('empresaStore'),
+                renderTo: Ext.get('my-app'),
+                columns: [
+                    {
+                        header: 'nombre',
+                        dataIndex: 'name',
+                        flex: true,
+                        editor: {
+                            type: 'textfield'
+                        }
+                    }
+                ],
+                listeners: {
+                    addclick: function() {
+                        edit = this.editing;
+                        edit.cancelEdit();
+                        this.store.insert(0, new Empresa());
+                        edit.startEdit(0,0);
+                    }
                 }
             });
+            
         });
     </script>
     ]]>
