@@ -32,10 +32,15 @@ class CuentaController extends AbstractController {
         parent::initializeAction();
     }
 
+    /**
+     * Listado de Cuentas, cache por defecto de 60 dias
+     *
+     * @return void
+     */
     public function listAction()
     {
         parent::listAction();
-        $this->setCacheHeaders();
+        $this->setCacheHeaders(60);
     }
 
 

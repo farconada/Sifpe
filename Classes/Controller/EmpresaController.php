@@ -32,9 +32,14 @@ class EmpresaController extends AbstractController {
         parent::initializeAction();
     }
 
+    /**
+     * Listado de Empresas, cache por defecto de 60 dias
+     *
+     * @return void
+     */
     public function listAction() {
         parent::listAction();
-        $this->setCacheHeaders();
+        $this->setCacheHeaders(365);
     }
 }
  
