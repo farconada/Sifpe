@@ -47,6 +47,22 @@ Ext.define('Sifpe.grid.Base', {
         });
         this.callParent();
         this.getSelectionModel().on('selectionchange', this.onSelectChange, this);
+
+        // Solucion temporal para
+        // http://www.sencha.com/forum/showthread.php?133767-Store.sync()-does-not-update-dirty-flag
+        this.store.on('write', function(store, operation) {
+            var success = operation.wasSuccessful();
+            if (success) {
+                Ext.each(operation.records, function(record) {
+                    if (record.dirty) {     // ??? Why???
+                        record.commit();
+                    }
+                    if (record.phantom) {     // ??? Why???
+                        record.phantom = false;
+                    }
+                });
+            }
+        });
     },
     onSelectChange: function(selModel, selections) {
         this.down('#delete').setDisabled(selections.length === 0);
