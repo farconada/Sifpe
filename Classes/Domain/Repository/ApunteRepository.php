@@ -35,8 +35,8 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
         $query = $this->createQuery();
         $query = $query->matching(
             $query->logicalAnd(
-                $query->greaterThanOrEqual('fecha', $fechaInicial),
-                $query->lessThanOrEqual('fecha', $fechaFinal)
+                $query->greaterThanOrEqual('fecha', $fechaInicial->format('Y-m-d')),
+                $query->lessThanOrEqual('fecha', $fechaFinal->format('Y-m-d'))
             )
         );
 
@@ -75,7 +75,7 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
         $entityManager = $entityManagerFactory->create();
         $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad, c.name AS cuenta FROM ' . $this->getEntityClassName() . ' g JOIN g.cuenta c WHERE g.fecha <=:fechaFinal AND g.fecha >=:fechaInicial GROUP BY c.id');
 
-        return $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
+        return $query->execute(array('fechaInicial' => $fechaInicial->format('Y-m-d'), 'fechaFinal' => $fechaFinal->format('Y-m-d')));
     }
 
     /**
@@ -98,7 +98,7 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
             $entityManager = $entityManagerFactory->create();
             $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM ' . $this->getEntityClassName() . ' g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
 
-            $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
+            $res = $query->execute(array('fechaInicial' => $fechaInicial->format('Y-m-d'), 'fechaFinal' => $fechaFinal->format('Y-m-d')));
             $result[$i]['cantidad'] = $res[0]['cantidad']+0;
             $fechaInicial->add(new \DateInterval('P0Y1M'));
         }
@@ -115,10 +115,10 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
         $entityManagerFactory = $this->objectManager->get('\F3\FLOW3\Persistence\Doctrine\EntityManagerFactory');
         $entityManager = $entityManagerFactory->create();
         $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM \F3\Sifpe\Domain\Model\Gasto g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
-        $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
+        $res = $query->execute(array('fechaInicial' => $fechaInicial->format('Y-m-d'), 'fechaFinal' => $fechaFinal->format('Y-m-d')));
         $result['gastos'] = $res[0]['cantidad'] ? $res[0]['cantidad']+0 : 0;
         $query = $entityManager->createQuery('SELECT sum(g.cantidad) AS cantidad FROM \F3\Sifpe\Domain\Model\Ingreso g WHERE g.fecha <:fechaFinal AND g.fecha >=:fechaInicial');
-        $res = $query->execute(array('fechaInicial' => $fechaInicial, 'fechaFinal' => $fechaFinal));
+        $res = $query->execute(array('fechaInicial' => $fechaInicial->format('Y-m-d'), 'fechaFinal' => $fechaFinal->format('Y-m-d')));
         $result['ingresos'] = $res[0]['cantidad'] ? $res[0]['cantidad']+0  : 0;
         return $result;
 
