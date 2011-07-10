@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Sifpe" default="documentation">
-    <target name="documentation">
+<project name="Sifpe" default="documentacion">
+    <target name="documentacion" description="Generar Documentacion de API">
         <echo msg="Generando Documentacion PhpDoc"/>
         <phpdoc title="API Documentation"
                 destdir="Documentation/apidocs"
@@ -16,6 +16,7 @@
             </projdocfileset>
         </phpdoc>
     </target>
+    <target name="metricas" description="Calcular metricas de software" depends="phpcpd,phploc,phpmd" />
     <target name="phpmd">
         <phpmd>
             <fileset dir=".">
