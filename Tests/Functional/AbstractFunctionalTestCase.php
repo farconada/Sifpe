@@ -3,8 +3,10 @@ declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\Tests\Functional;
 /**
  * Clase abstracta para cargar fixtures en la BD
- * @author Fernando Arconada fernando.arconada@gmail.com
+ *
+ * @author Fernando Arconada
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
  */
 class AbstractFunctionalTestCase extends \F3\FLOW3\Tests\FunctionalTestCase
 {

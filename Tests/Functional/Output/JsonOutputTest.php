@@ -2,6 +2,11 @@
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Tests\Functional\Output;
 
+/**
+ * @author Fernando Arconada
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
+ */
 class JsonOutputTest extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase {
     private $controllers = array('Cuenta', 'GrupoCuenta', 'Empresa','Gasto','Ingreso');
 

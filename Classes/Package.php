@@ -25,9 +25,11 @@ namespace F3\Sifpe;
 use \F3\FLOW3\Package\Package as BasePackage;
 
 /**
- * The Blog Package
+ * The Sifpe Package
  *
+ * @author Fernando Arconada
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
  */
 class Package extends BasePackage {
     /**

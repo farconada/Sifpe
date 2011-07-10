@@ -3,8 +3,9 @@ declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\Tests\Functional\Persistence;
 /**
  * Testcase para guardar y borrar elementos
- * @author Fernando Arconada fernando.arconada@gmail.com
+ * @author Fernando Arconada
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
  */
 class PersistEntities extends \F3\Sifpe\Tests\Functional\AbstractFunctionalTestCase
 {

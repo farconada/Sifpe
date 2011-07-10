@@ -12,6 +12,9 @@ namespace F3\Sifpe\Domain\Model;
  * @entity
  * @HasLifecycleCallbacks
  * @Table(name="ingreso")
+ * @author Fernando Arconada
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
  */
 class Ingreso extends Apunte implements \F3\Sifpe\Domain\EntityInterface {
     /**
