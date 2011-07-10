@@ -3,9 +3,11 @@ declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Controller;
  
 /*
- * UtilController
+ * UtilController para backups reindexar y otras cosas
  *
- * Gestion de Backups
+ * @author Fernando Arconada
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
  */
 class UtilController extends \F3\FLOW3\MVC\Controller\ActionController {
 

@@ -3,12 +3,12 @@ declare(ENCODING = 'utf-8') ;
 namespace F3\Sifpe\Domain\Repository;
 
 /**
- * ApunteRepository
+ * Respositorio para Apuntes
  *
- *
- *
+ * @author Fernando Arconada
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @package Sifpe
  */
-
 class ApunteRepository extends \F3\FLOW3\Persistence\Repository
 {
     /**
@@ -81,7 +81,7 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
     /**
      * Devuelve el total de los apuntes de un mes para los doces meses del año de enero a dicimbre
      *
-     * @param  $aniosAtras Mumero de años atras para los que devolver el listado
+     * @param  $aniosAtras numero de años atras para los que devolver el listado
      * @return array
      */
     public function getResumenAnual($aniosAtras)
@@ -106,6 +106,12 @@ class ApunteRepository extends \F3\FLOW3\Persistence\Repository
 
     }
 
+    /**
+     * Devuelve un array con los gastos del mes y del mes anterior agrupados por cuenta
+     *
+     * @param $mesesAtras Numero de meses atras para los que devolver el listado
+     * @return array
+     */
     public function getResumenMes($mesesAtras)
     {
         $fechaInicial = new \DateTime("first day of $mesesAtras month ago");

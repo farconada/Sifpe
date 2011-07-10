@@ -11,6 +11,7 @@ namespace F3\Sifpe\TypeConverters;
  * @api
  * @scope singleton
  * @author Fernando Arconada
+ * @package Sifpe
  */
 class JsonToEntityConverter extends \F3\FLOW3\Property\TypeConverter\AbstractTypeConverter
 {
