@@ -124,6 +124,7 @@ Ext.define('Sifpe.grid.Apunte', {
             ]
         });
         this.callParent();
+        this.store.sort([{property: 'fecha', direction: 'DESC'}]);
         this.addDocked({
             xtype: 'toolbar',
             items: {
