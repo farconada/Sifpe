@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Sifpe" default="documentation">
+    <target name="documentation">
+        <echo msg="Generando Documentacion PhpDoc"/>
+        <phpdoc title="API Documentation"
+                destdir="Documentation/apidocs"
+                sourcecode="false"
+                output="HTML:Smarty:PHP">
+            <fileset dir=".">
+                <include name="**/*.php"/>
+            </fileset>
+            <projdocfileset dir=".">
+                <include name="README"/>
+                <include name="INSTALL"/>
+                <include name="CHANGELOG"/>
+            </projdocfileset>
+        </phpdoc>
+    </target>
+    <target name="phpmd">
+        <phpmd>
+            <fileset dir=".">
+                <include name="**/*.php"/>
+            </fileset>
+            <formatter type="text" outfile="Documentation/reports/pmd.txt"/>
+        </phpmd>
+    </target>
+</project>
