@@ -41,8 +41,8 @@ Ext.define('Sifpe.chart.ResumenCuenta', {
                     yField: ['cantidad','cantidad_anterior'],
                     tips: {
                         trackMouse: true,
-                        width: 74,
-                        height: 38,
+                        width: 150,
+                        height: 30,
                         renderer: function(storeItem, item) {
                             var cuenta = item.value[0];
                             if (cuenta.length >= 10) {
