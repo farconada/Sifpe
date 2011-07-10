@@ -24,4 +24,15 @@
             <formatter type="text" outfile="Documentation/reports/pmd.txt"/>
         </phpmd>
     </target>
+    <target name="phploc" description="Generate phploc.csv">
+        <exec command="phploc --log-csv Documentation/reports/phploc.csv ./ > Documentation/reports/phploc.txt "/>
+    </target>
+    <target name="phpcpd" description="Copy Paste detector">
+        <phpcpd>
+            <fileset dir=".">
+                <include name="**/*.php"/>
+            </fileset>
+            <formatter type="pmd" outfile="Documentation/reports/pmd-cpd.xml"/>
+        </phpcpd>
+    </target>
 </project>
