@@ -1,0 +1,750 @@
+<html>
+<head>
+<title>Docs For Class LuceneIndexedSearchService</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">Sifpe</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                    
+                              		  [ <a href="../classtrees_Sifpe.html" class="menu">class tree: Sifpe</a> ]
+		  [ <a href="../elementindex_Sifpe.html" class="menu">index: Sifpe</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_Sifpe.html">Sifpe</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../Sifpe/_Classes---Controller---AbstractController.php.html">		AbstractController.php
+		</a><br>
+			<a href="../Sifpe/_Tests---Functional---AbstractFunctionalTestCase.php.html">		AbstractFunctionalTestCase.php
+		</a><br>
+			<a href="../Sifpe/_Tests---Functional---Persistence---AllTablesHaveDataTest.php.html">		AllTablesHaveDataTest.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Model---Apunte.php.html">		Apunte.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Controller---ApunteController.php.html">		ApunteController.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Repository---ApunteRepository.php.html">		ApunteRepository.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Service---BackupServiceInterface.php.html">		BackupServiceInterface.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Model---Cuenta.php.html">		Cuenta.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Controller---CuentaController.php.html">		CuentaController.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Repository---CuentaRepository.php.html">		CuentaRepository.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Service---DoctrineEventListenerInterface.php.html">		DoctrineEventListenerInterface.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Model---Empresa.php.html">		Empresa.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Controller---EmpresaController.php.html">		EmpresaController.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Repository---EmpresaRepository.php.html">		EmpresaRepository.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---EntityInterface.php.html">		EntityInterface.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Model---Gasto.php.html">		Gasto.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Controller---GastoController.php.html">		GastoController.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Repository---GastoRepository.php.html">		GastoRepository.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Model---GrupoCuenta.php.html">		GrupoCuenta.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Controller---GrupoCuentaController.php.html">		GrupoCuentaController.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Repository---GrupoCuentaRepository.php.html">		GrupoCuentaRepository.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Service---IndexManagerInterface.php.html">		IndexManagerInterface.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Service---IndexSearchInterface.php.html">		IndexSearchInterface.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Model---Ingreso.php.html">		Ingreso.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Controller---IngresoController.php.html">		IngresoController.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Domain---Repository---IngresoRepository.php.html">		IngresoRepository.php
+		</a><br>
+			<a href="../Sifpe/_Tests---Functional---Output---JsonOutputTest.php.html">		JsonOutputTest.php
+		</a><br>
+			<a href="../Sifpe/_Tests---Functional---Property---JsonProperty.php.html">		JsonProperty.php
+		</a><br>
+			<a href="../Sifpe/_Classes---TypeConverters---JsonToEntityConverter.php.html">		JsonToEntityConverter.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Service---LuceneIndexedSearchService.php.html">		LuceneIndexedSearchService.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Service---MysqlBackupService.php.html">		MysqlBackupService.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Package.php.html">		Package.php
+		</a><br>
+			<a href="../Sifpe/_Tests---Functional---Persistence---PersistEntities.php.html">		PersistEntities.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Service---SearchListenerService.php.html">		SearchListenerService.php
+		</a><br>
+			<a href="../Sifpe/_Classes---Controller---UtilController.php.html">		UtilController.php
+		</a><br>
+	  </div><br />
+      
+            <b>Interfaces:</b><br />
+        <div class="package">
+		    		<a href="../Sifpe/BackupServiceInterface.html">BackupServiceInterface</a><br />
+	    		<a href="../Sifpe/DoctrineEventListenerInterface.html">DoctrineEventListenerInterface</a><br />
+	    		<a href="../Sifpe/EntityInterface.html">EntityInterface</a><br />
+	    		<a href="../Sifpe/IndexManagerInterface.html">IndexManagerInterface</a><br />
+	    		<a href="../Sifpe/IndexSearchInterface.html">IndexSearchInterface</a><br />
+	  </div>
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../Sifpe/AbstractController.html">AbstractController</a><br />
+	    		<a href="../Sifpe/AbstractFunctionalTestCase.html">AbstractFunctionalTestCase</a><br />
+	    		<a href="../Sifpe/AllTablesHaveDataTest.html">AllTablesHaveDataTest</a><br />
+	    		<a href="../Sifpe/Apunte.html">Apunte</a><br />
+	    		<a href="../Sifpe/ApunteController.html">ApunteController</a><br />
+	    		<a href="../Sifpe/ApunteRepository.html">ApunteRepository</a><br />
+	    		<a href="../Sifpe/Cuenta.html">Cuenta</a><br />
+	    		<a href="../Sifpe/CuentaController.html">CuentaController</a><br />
+	    		<a href="../Sifpe/CuentaRepository.html">CuentaRepository</a><br />
+	    		<a href="../Sifpe/Empresa.html">Empresa</a><br />
+	    		<a href="../Sifpe/EmpresaController.html">EmpresaController</a><br />
+	    		<a href="../Sifpe/EmpresaRepository.html">EmpresaRepository</a><br />
+	    		<a href="../Sifpe/Gasto.html">Gasto</a><br />
+	    		<a href="../Sifpe/GastoController.html">GastoController</a><br />
+	    		<a href="../Sifpe/GastoRepository.html">GastoRepository</a><br />
+	    		<a href="../Sifpe/GrupoCuenta.html">GrupoCuenta</a><br />
+	    		<a href="../Sifpe/GrupoCuentaController.html">GrupoCuentaController</a><br />
+	    		<a href="../Sifpe/GrupoCuentaRepository.html">GrupoCuentaRepository</a><br />
+	    		<a href="../Sifpe/Ingreso.html">Ingreso</a><br />
+	    		<a href="../Sifpe/IngresoController.html">IngresoController</a><br />
+	    		<a href="../Sifpe/IngresoRepository.html">IngresoRepository</a><br />
+	    		<a href="../Sifpe/JsonOutputTest.html">JsonOutputTest</a><br />
+	    		<a href="../Sifpe/JsonProperty.html">JsonProperty</a><br />
+	    		<a href="../Sifpe/JsonToEntityConverter.html">JsonToEntityConverter</a><br />
+	    		<a href="../Sifpe/LuceneIndexedSearchService.html">LuceneIndexedSearchService</a><br />
+	    		<a href="../Sifpe/MysqlBackupService.html">MysqlBackupService</a><br />
+	    		<a href="../Sifpe/Package.html">Package</a><br />
+	    		<a href="../Sifpe/PersistEntities.html">PersistEntities</a><br />
+	    		<a href="../Sifpe/SearchListenerService.html">SearchListenerService</a><br />
+	    		<a href="../Sifpe/UtilController.html">UtilController</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: LuceneIndexedSearchService</h1>
+Source Location: /Classes/Service/LuceneIndexedSearchService.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">Clase que se encarga de indexar objetos de tipo apunte en un indice Lucene</div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+          <li>Fernando Arconada</li>
+                  </ul>
+
+
+
+
+            
+
+                <p class="implements">
+            Implements interfaces:
+            <ul>
+                <li><a href="../Sifpe/IndexSearchInterface.html">IndexSearchInterface</a></li><li><a href="../Sifpe/IndexManagerInterface.html">IndexManagerInterface</a></li>            </ul>
+        </p>
+        
+</td>
+
+<td valign="top">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#var$index">$index</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#var$settings">$settings</a></li>
+  </ul>
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methodaddApunteIndex">addApunteIndex</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methoddeleteAll">deleteAll</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methoddeleteApunteIndex">deleteApunteIndex</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methoddeleteByKeyword">deleteByKeyword</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methoddeleteCollection">deleteCollection</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methodfind">find</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methodindexCollection">indexCollection</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methodinitializeObject">initializeObject</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methodinjectSettings">injectSettings</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methodshutdownObject">shutdownObject</a></li>
+    <li><a href="../Sifpe/LuceneIndexedSearchService.html#methodupdateApunteIndex">updateApunteIndex</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 17]<br />
+Clase que se encarga de indexar objetos de tipo apunte en un indice Lucene<br /><br /><p>Necesita Zend Framework en el include path</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Fernando Arconada</td>
+  </tr>
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td><a href="http://framework.zend.com/manual/en/zend.search.lucene.html">http://framework.zend.com/manual/en/zend.search.lucene.html</a></td>
+  </tr>
+  <tr>
+    <td><b>license:</b>&nbsp;&nbsp;</td><td><a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License, version 3 or later</a></td>
+  </tr>
+</table>
+</div>
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+<hr />
+<a name="class_vars"></a>
+<h3>Class Variables</h3>
+<div class="tags">
+	<a name="var$index"></a>
+	<p></p>
+	<h4>$index = <span class="value"></span></h4>
+	<p>[line 29]</p>
+  Objeto que gestiona el indice Lucene<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>object Zend_Search_Lucene</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$settings"></a>
+	<p></p>
+	<h4>$settings = <span class="value"></span></h4>
+	<p>[line 22]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>var:</b>&nbsp;&nbsp;</td><td>con los setting de Settings.yaml bajo la key Sifpe</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>array</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+
+  <hr />
+	<a name="methodaddApunteIndex"></a>
+	<h3>method addApunteIndex <span class="smalllinenumber">[line 175]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void addApunteIndex(
+<a href="../Sifpe/Apunte.html">Apunte</a>
+\\\\\$apunte, \F3\Sifpe\Domain\Model\Apunte
+$apunte)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Indexa un Apunte<br /><br /><p>Todos los campos se guardan UTF-8  El objId es el ID del objeto para poderlo recuperar de la capa de persistencia buscando por ese ID  El class permite distinguir el tipo de apunte Gasto/Ingreso</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">\F3\Sifpe\Domain\Model\Apunte&nbsp;&nbsp;</td>
+        <td><b>$apunte</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type"><a href="../Sifpe/Apunte.html">Apunte</a>&nbsp;&nbsp;</td>
+        <td><b>\\\\\$apunte</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddeleteAll"></a>
+	<h3>method deleteAll <span class="smalllinenumber">[line 92]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void deleteAll(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Borra el indice completo<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+			<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt><a href="../Sifpe/IndexManagerInterface.html#methoddeleteAll">IndexManagerInterface::deleteAll()</a></dt>
+						<dd>Borra el indice completo</dd>
+					</dl>
+		
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddeleteApunteIndex"></a>
+	<h3>method deleteApunteIndex <span class="smalllinenumber">[line 193]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void deleteApunteIndex(
+<a href="../Sifpe/Apunte.html">Apunte</a>
+\\\\\$apunte, \F3\Sifpe\Domain\Model\Apunte
+$apunte)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Borra un apunte del indice<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">\F3\Sifpe\Domain\Model\Apunte&nbsp;&nbsp;</td>
+        <td><b>$apunte</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type"><a href="../Sifpe/Apunte.html">Apunte</a>&nbsp;&nbsp;</td>
+        <td><b>\\\\\$apunte</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddeleteByKeyword"></a>
+	<h3>method deleteByKeyword <span class="smalllinenumber">[line 75]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void deleteByKeyword(
+string
+$keyword, string
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Borra del indice todos los objetos que cumplen con el criterio keyword=valor<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+			<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt><a href="../Sifpe/IndexManagerInterface.html#methoddeleteByKeyword">IndexManagerInterface::deleteByKeyword()</a></dt>
+						<dd>Borra del indice todos los objetos que cumplen con el criterio keyword=valor</dd>
+					</dl>
+		
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$keyword</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddeleteCollection"></a>
+	<h3>method deleteCollection <span class="smalllinenumber">[line 57]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void deleteCollection(
+array
+$objects)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Borrar una coleccion de objeto de tipo entidad<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+			<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt><a href="../Sifpe/IndexManagerInterface.html#methoddeleteCollection">IndexManagerInterface::deleteCollection()</a></dt>
+						<dd>Borrar una coleccion de objeto de tipo entidad</dd>
+					</dl>
+		
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$objects</b>&nbsp;&nbsp;</td>
+        <td>borra del indice todos los objetos del array</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodfind"></a>
+	<h3>method find <span class="smalllinenumber">[line 146]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array find(
+
+$queryString, string
+$query)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Busca un objeto en el indice y devuelve una coleccion de hits que cumplen con el criterio de busqueda<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+			<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt><a href="../Sifpe/IndexSearchInterface.html#methodfind">IndexSearchInterface::find()</a></dt>
+						<dd>Busca un objeto en el indice y devuelve una coleccion de hits que cumplen con el criterio de busqueda</dd>
+					</dl>
+		
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$query</b>&nbsp;&nbsp;</td>
+        <td>query string</td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$queryString</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodindexCollection"></a>
+	<h3>method indexCollection <span class="smalllinenumber">[line 37]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void indexCollection(
+array
+$objects)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Indexa un array de objeto de tipo entidad<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+			<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt><a href="../Sifpe/IndexManagerInterface.html#methodindexCollection">IndexManagerInterface::indexCollection()</a></dt>
+						<dd>Indexa un array de objeto de tipo entidad</dd>
+					</dl>
+		
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$objects</b>&nbsp;&nbsp;</td>
+        <td>array de objetos a indexar</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodinitializeObject"></a>
+	<h3>method initializeObject <span class="smalllinenumber">[line 116]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void initializeObject(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Inicializa el objeto y crea o abre el indice de Lucene<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td><a href="http://flow3.typo3.org/documentation/manuals/flow3/flow3.objectframework/#id36283856">http://flow3.typo3.org/documentation/manuals/flow3/flow3.objectframework/#id36283856</a></td>
+  </tr>
+  <tr>
+    <td><b>throws:</b>&nbsp;&nbsp;</td><td>\F3\FLOW3\Error\Exception</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodinjectSettings"></a>
+	<h3>method injectSettings <span class="smalllinenumber">[line 104]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void injectSettings(
+
+$settings)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Injecto el objeto de settings<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td><a href="http://flow3.typo3.org/documentation/manuals/flow3/flow3.objectframework/#id36285025">http://flow3.typo3.org/documentation/manuals/flow3/flow3.objectframework/#id36285025</a></td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$settings</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodshutdownObject"></a>
+	<h3>method shutdownObject <span class="smalllinenumber">[line 135]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void shutdownObject(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Finaliza el objeto y hace un commit del indice para evitar tenerlo que hacer en cada update o delete<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td><a href="http://flow3.typo3.org/documentation/manuals/flow3/flow3.objectframework/#id36283856">http://flow3.typo3.org/documentation/manuals/flow3/flow3.objectframework/#id36283856</a></td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodupdateApunteIndex"></a>
+	<h3>method updateApunteIndex <span class="smalllinenumber">[line 159]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void updateApunteIndex(
+<a href="../Sifpe/Apunte.html">Apunte</a>
+\\\\\$apunte, \F3\Sifpe\Domain\Model\Apunte
+$apunte)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Actualiza el indice de un Apunte<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">\F3\Sifpe\Domain\Model\Apunte&nbsp;&nbsp;</td>
+        <td><b>$apunte</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type"><a href="../Sifpe/Apunte.html">Apunte</a>&nbsp;&nbsp;</td>
+        <td><b>\\\\\$apunte</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 10 Jul 2011 10:52:43 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

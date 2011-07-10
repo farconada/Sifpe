@@ -1,0 +1,8 @@
+
+/var/www/html/Sifpe/Classes/Controller/AbstractController.php:213	Avoid unused parameters such as '$entity'.
+/var/www/html/Sifpe/Classes/Controller/UtilController.php:88	Avoid unused parameters such as '$entity'.
+/var/www/html/Sifpe/Classes/Service/LuceneIndexedSearchService.php:17	This class has too many methods, consider refactoring it.
+/var/www/html/Sifpe/Classes/Service/LuceneIndexedSearchService.php:124	Avoid unused local variables such as '$ex'.
+/var/www/html/Sifpe/Classes/TypeConverters/JsonToEntityConverter.php:81	Avoid unused parameters such as '$subProperties'.
+/var/www/html/Sifpe/Classes/TypeConverters/JsonToEntityConverter.php:81	Avoid unused parameters such as '$configuration'.
+/var/www/html/Sifpe/Tests/Functional/Persistence/PersistEntities.php:64	Avoid unused local variables such as '$output'.
