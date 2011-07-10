@@ -13,6 +13,9 @@ namespace F3\Sifpe\Domain\Model;
 * @MappedSuperclass
 * @HasLifecycleCallbacks
 * @entity
+* @author Fernando Arconada
+* @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+* @package Sifpe
 */
 class Apunte implements \F3\Sifpe\Domain\EntityInterface {
  

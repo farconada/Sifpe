@@ -2,7 +2,7 @@
 declare(ENCODING = 'utf-8');
 namespace F3\Sifpe\Controller;
  
-/*
+/**
  * UtilController para backups reindexar y otras cosas
  *
  * @author Fernando Arconada

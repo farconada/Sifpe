@@ -204,6 +204,8 @@ class AbstractController extends \F3\FLOW3\MVC\Controller\ActionController
     }
 
     /**
+     * Emite la señal del modelo signal/slot para indicar que se ha eliminado una entidad
+     *
      * @param \F3\Sifpe\Domain\EntityInterface $entity
      * @return void
      * @signal
