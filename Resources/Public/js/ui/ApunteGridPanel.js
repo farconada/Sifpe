@@ -67,8 +67,7 @@ Ext.define('Sifpe.grid.Apunte', {
                         allowBlank: false,
                         format: 'd-m-Y',
                         minValue: '2006-01-01',
-                        minText: 'Cannot have a start date before the company existed!',
-                        maxValue: Ext.Date.format(new Date(), 'Y-m-d')
+                        minText: 'Cannot have a start date before the company existed!'
                     }
                 },
                 {
